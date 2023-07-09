@@ -4,58 +4,74 @@
 <div class="row justify-content-center">
 
     @if(session()->has('success') && session()->get('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @endif
 
     @if(session()->has('err') && session()->get('err'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('err') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('err') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     @endif
 
     <div class="col-lg-10">
         <div class="row mb-3">
             <div class="col-lg-6">
-                <h1>Alternatif</h1>
+                <h1>Survey E-Learning</h1>
             </div>
             <div class="col-lg-6 text-right">
                 <a href="/alternative/create" class="btn btn-primary btn-icon">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Tambah Data Alternatif</span>
+                    <span class="text">Tambah Pertanyaan</span>
                 </a>
             </div>
+            <div class="dropdown no-arrow mb-4 text-left">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Please select section
+                    </button>   
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Technological Skills</a>
+                        <a class="dropdown-item" href="#">Study Habits & Skills</a>
+                        <a class="dropdown-item" href="#">Cognitive Preseence</a>
+                        <a class="dropdown-item" href="#">Teaching Preseence</a>
+                        <a class="dropdown-item" href="#">Social Preseence</a>
+                    </div>
+                </div>
         </div>
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Tabel Data Alternatif</h6>
+                <h6 class="m-0 font-weight-bold text-primary"></h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>No</th>
-                                <th>Nama</th>
-                                <th>Waktu Dibuat</th>
-                                <th>Update Terakhir</th>
-                                <th>Aksi</th>
+                                <th class="w-auto">No</th>
+                                <th class="w-auto">Pertanyaan</th>
+                                <th class="w-auto">Waktu Dibuat</th>
+                                <!-- <th>Update Terakhir</th> -->
+                                <th class="w-auto">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($alternatives as $index => $alternative)
                             <tr>
-                                <th scope="row">{{ $index+1 }}</th>
-                                <td>{{ $alternative->name; }}</td>
-                                <td>{{ $alternative->created_at; }}</td>
-                                <td>{{ $alternative->updated_at; }}</td>
-                                <td>
-                                    <a href="/alternative/{{$alternative->id}}/edit" class="btn btn-primary btn-circle">
+                                <th class="w-auto" scope="row">{{ $index+1 }}</th>
+                                <td class="w-auto">{{ $alternative->name; }}</td>
+                                <td class="w-auto">{{ $alternative->created_at; }}</td>
+                                <!-- <td>{{ $alternative->updated_at; }}</td> -->
+                                <td class="w-auto">
+                                    <!-- <a href="/alternative/{{$alternative->id}}/edit" class="btn btn-primary btn-circle">
+                                        <i class="fas fa-pencil-square-o"></i>
+                                    </a> -->
+                                    <a class="btn btn-primary btn-circle" data-toggle="modal" data-bs-target="#smallButton"
+                                       data-attr="/alternative/{{$alternative->id}}/edit" data-target="#smallModal" id="smallButton">
                                         <i class="fas fa-pencil-square-o"></i>
                                     </a>
 
@@ -94,41 +110,41 @@
 @endsection
 
 @section('javascript_content')
-    <script>
-        // display a modal (small modal)
-        $(document).on('click', '#smallButton', function(event) {
-            event.preventDefault();
-            let href = $(this).attr('data-attr');
-            console.log('ini bro', href);
-            $.ajax({
-                url: href
-                , beforeSend: function() {
-                    // $('#loader').show();
-                },
-                // return the result
-                success: function(result) {
-                    $('#smallModal').modal("show");
-                    $('#smallBody').html(result).show();
-                }
-                , complete: function() {
-                    // $('#loader').hide();
-                }
-                , error: function(jqXHR, testStatus, error) {
-                    console.log(error);
-                    alert("Page " + href + " cannot open. Error:" + error);
-                    // $('#loader').hide();
-                }
-                , timeout: 8000
-            })
-        });
-    </script>
+<script>
+    // display a modal (small modal)
+    $(document).on('click', '#smallButton', function(event) {
+        event.preventDefault();
+        let href = $(this).attr('data-attr');
+        console.log('ini bro', href);
+        $.ajax({
+            url: href,
+            beforeSend: function() {
+                // $('#loader').show();
+            },
+            // return the result
+            success: function(result) {
+                $('#smallModal').modal("show");
+                $('#smallBody').html(result).show();
+            },
+            complete: function() {
+                // $('#loader').hide();
+            },
+            error: function(jqXHR, testStatus, error) {
+                console.log(error);
+                alert("Page " + href + " cannot open. Error:" + error);
+                // $('#loader').hide();
+            },
+            timeout: 8000
+        })
+    });
+</script>
 
-    <script>
-        // display a modal (small modal)
-        $(document).on('click', '#cancelButton', function(event) {
-            event.preventDefault();
-            $('#smallModal').modal("hide");
-            $('#smallBody').html(result).hide();
-        });
-    </script>
+<script>
+    // display a modal (small modal)
+    $(document).on('click', '#cancelButton', function(event) {
+        event.preventDefault();
+        $('#smallModal').modal("hide");
+        $('#smallBody').html(result).hide();
+    });
+</script>
 @endsection

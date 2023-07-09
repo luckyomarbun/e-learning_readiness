@@ -20,20 +20,20 @@
     <div class="col-lg-10">
         <div class="row mb-3">
             <div class="col-lg-6">
-                <h1>Nilai Bobot</h1>
+                <h1>Coresponden</h1>
             </div>
-            <div class="col-lg-6 text-right">
+            <!-- <div class="col-lg-6 text-right">
                 <a href="/value-weight/create" class="btn btn-primary btn-icon">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
-                    <span class="text">Tambah Data Nilai Bobot</span>
+                    <span class="text">Tambah Data Coresponden</span>
                 </a>
-            </div>
+            </div> -->
         </div>
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Tabel Data Nilai Bobot</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Tabel Data Coresponden</h6>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -41,11 +41,11 @@
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Nilai</th>
-                                <th scope="col">Deskripsi</th>
-                                <th scope="col">Waktu Dibuat</th>
-                                <th scope="col">Update Terakhir</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col">Nama</th>
+                                <!-- <th scope="col">Nama Survey</th> -->
+                                <th scope="col">Tanggal Ambil Survey</th>
+                                <th scope="col">Skor</th>
+                                <!-- <th scope="col">Aksi</th> -->
                             </tr>
                         </thead>
                         <tbody>
@@ -53,10 +53,10 @@
                             <tr>
                                 <th scope="row">{{ $index+1 }}</th>
                                 <td>{{ $valueweight->value; }}</td>
-                                <td>{{ $valueweight->description; }}</td>
+                                <!-- <td>{{ $valueweight->description; }}</td> -->
                                 <td>{{ $valueweight->created_at; }}</td>
-                                <td>{{ $valueweight->updated_at; }}</td>
-                                <td>
+                                <td>{{ $valueweight->skor; }}</td>
+                                <!-- <td>
                                     <a href="/value-weight/{{$valueweight->id}}/edit" class="btn btn-primary btn-circle">
                                         <i class="fas fa-pencil-square-o"></i>
                                     </a>
@@ -65,7 +65,7 @@
                                        data-attr="/value-weight/delete/{{ $valueweight->id }}" data-target="#smallModal" id="smallButton">
                                         <i class="fas fa-trash"></i>
                                     </a>
-                                </td>
+                                </td> -->
                             </tr>
                             @endforeach
                         </tbody>

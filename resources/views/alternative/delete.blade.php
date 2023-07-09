@@ -2,7 +2,7 @@
     <div class="modal-body">
         @csrf
         @method('DELETE')
-        <h5 class="text-center">Apakah anda yakin ingin menghapus {{ $alternative->name }}?</h5>
+        <h5 class="text-center">Apakah anda yakin ingin menghapus pertanyaan berikut?</h5>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cancelButton">Batal</button>
