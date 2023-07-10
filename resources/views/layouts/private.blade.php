@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>{{ $title ?? 'Scheduler Acceptance' }}</title>
+  <title>{{ $title ?? 'Administrator' }}</title>
 
   <!-- Custom fonts for this template-->
   <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
@@ -64,7 +64,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>&copy; Al - Fath School Indonesia 2023. All rights reserved.</span>
+                    <span>&copy; Tugas Akhir 2023. All rights reserved.</span>
                 </div>
             </div>
         </footer>

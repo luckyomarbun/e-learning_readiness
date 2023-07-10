@@ -5,15 +5,15 @@
     <div class="col-lg-6 mb-5">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Tambah Data Alternatif</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Tambah Pertanyaan</h6>
             </div>
             <div class="card-body">
                 <main class="form-master">
                     <form action="/alternative" method="post">
                         @csrf
                         <div class="form">
-                            <label for="name">Nama</label>
-                            <input type="text" name="name" class="form-control rounded-top  @error('name') is-invalid @enderror" id="name" placeholder="Nama" required value="{{ old('name') }}">
+                            <label for="name">Pertanyaan</label>
+                            <input type="text" name="name" class="form-control rounded-top  @error('name') is-invalid @enderror" id="name" placeholder="Masukkan Pertanyaan" required value="{{ old('name') }}">
                             @error('name')
                             <div class="invalid-feedback">
                                 {{ $message }}

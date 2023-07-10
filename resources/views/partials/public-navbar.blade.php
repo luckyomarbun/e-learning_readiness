@@ -9,9 +9,9 @@
     <ul class="navbar-nav ml-5">
         <li class="nav-item">
             <a class="nav-link" href="/">
-{{--                <h5 class="text-primary"><b>Scholarship Acceptance Application</b></h5>--}}
-                <img src="{{ asset('img/al-fath.png') }}" alt="logo-al-fath" width="65px" height="65px">
-                <h6 class="text-dark mt-2">Al - Fath <br> School <br> Indonesia</h6>
+{{--                <h5 class="text-primary"><b>LUCKY</b></h5>--}}
+                <img src="{{ asset('img/Tel-U.png') }}" alt="logo-Tel-U" width="auto" height="66px">
+                <h6 class="text-dark mt-2"> <br> <br></h6>
             </a>
         </li>
 

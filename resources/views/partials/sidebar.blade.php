@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-            <img src="{{ asset('img/al-fath-white.png') }}" alt="E - Learning" width="60px" height="60px">
+            <img src="{{ asset('img/ahp.png') }}" alt="E - Learning" width="auto" height="70px">
         </div>
         <!-- <div class="sidebar-brand-text mx-3">E-Learning Readiness</div> -->
     </a>

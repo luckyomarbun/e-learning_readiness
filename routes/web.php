@@ -27,18 +27,18 @@ use App\Models\CriteriaComparison;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "E-Learning",
+        "title" => "E-Learning Readiness",
         "active" => 'scholarship acceptance'
     ]);
 });
 
 
-Route::get('/about', function () {
-    return view('about', [
-        "title" => "About",
-        "active" => 'about',
-    ]);
-});
+// Route::get('/about', function () {
+//     return view('about', [
+//         "title" => "About",
+//         "active" => 'about',
+//     ]);
+// });
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 

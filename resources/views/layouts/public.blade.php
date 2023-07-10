@@ -40,7 +40,7 @@
   <footer class="sticky-footer bg-primary fixed-bottom shadow">
     <div class="container my-auto">
       <div class="copyright text-center text-white my-auto">
-        <span>&copy; Al - Fath School Indonesia 2023. All rights reserved.</span>
+        <span>&copy; Tugas Akhir 2023. All rights reserved.</span>
       </div>
     </div>
   </footer>

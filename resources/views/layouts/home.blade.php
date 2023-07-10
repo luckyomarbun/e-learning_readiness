@@ -43,10 +43,10 @@
               </div>
           </div>
           <!-- Footer -->
-          <footer class="sticky-footer bg-primary shadow">
+          <footer class="sticky-footer bg-secondary shadow">
               <div class="container my-auto">
                   <div class="copyright text-center text-white my-auto">
-                      <span>&copy; Scholarship Acceptance 2023. All rights reserved.</span>
+                      <span>&copy; Tugas Akhir 2023. All rights reserved.</span>
                   </div>
               </div>
           </footer>
