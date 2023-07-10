@@ -8,7 +8,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Selamat Datang</h6>
             </div>
             <div class="card-body">
-                <p>Halo {{ auth()->user()->name }}, selamat datang di aplikasi sistem E-Learning Readiness</p>
+                <p>Halo {{ auth()->user()->name }}, selamat datang di aplikasi sistem E-Learning Readiness </p>
             </div>
         </div>
     </div>

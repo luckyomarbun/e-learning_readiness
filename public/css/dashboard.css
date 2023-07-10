@@ -8,6 +8,10 @@ body {
   vertical-align: text-bottom;
 }
 
+h6.question {
+font-weight: bold;
+}
+
 /*
  * Sidebar
  */
