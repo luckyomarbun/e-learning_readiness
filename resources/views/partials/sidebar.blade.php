@@ -22,8 +22,8 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <li class="nav-item {{ Request::is('alternative') ? 'active' : '' }}">
-        <a class="nav-link" href="/alternative">
+    <li class="nav-item {{ Request::is('survey') ? 'active' : '' }}">
+        <a class="nav-link" href="/survey">
             <i class="fas fa-user-friends"></i>
             <span>Survey</span></a>
     </li>

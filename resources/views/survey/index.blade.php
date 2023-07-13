@@ -70,11 +70,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($alternatives as $index => $alternative)
+                            @foreach($question as $index => $question)
                             <tr>
                                 <th class="w-auto" scope="row">{{ $index+1 }}</th>
-                                <td class="w-auto">{{ $alternative->name; }}</td>
-                                <td class="w-auto">{{ $alternative->created_at; }}</td>
+                                <td class="w-auto">{{ $question->name; }}</td>
+                                <td class="w-auto">{{ $question->created_at; }}</td>
                                 <!-- <td>{{ $alternative->updated_at; }}</td> -->
                                 <td class="w-auto">
                                     <!-- <a href="/alternative/{{$alternative->id}}/edit" class="btn btn-primary btn-circle">

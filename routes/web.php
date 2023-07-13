@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\ValueWeightController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
@@ -60,6 +61,8 @@ Route::get('/dashboard', function() {
 
 Route::resource('/alternative', AlternativeController::class);
 Route::get('/alternative/delete/{id}', [AlternativeController::class, 'delete']);
+
+Route::resource('/survey', SurveyController::class);
 
 Route::resource('/criteria', CriteriaController::class);
 Route::get('/criteria/delete/{id}', [CriteriaController::class, 'delete']);
