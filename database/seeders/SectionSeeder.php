@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Section;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class SectionSeeder extends Seeder
 {
@@ -14,6 +16,9 @@ class SectionSeeder extends Seeder
      */
     public function run()
     {
+        Schema::disableForeignKeyConstraints();
+        Section::truncate();
+        Schema::enableForeignKeyConstraints();
         Section::create([
             'id' => 1,
             'value' => 'Technological Skills'

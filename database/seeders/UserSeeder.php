@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class UserSeeder extends Seeder
 {
@@ -13,7 +15,11 @@ class UserSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        Schema::disableForeignKeyConstraints();
+        User::truncate();
+        Schema::enableForeignKeyConstraints();
+
          User::create([
              'full_name' => 'Admin',
              'student_id_number' => '9871254321',
@@ -27,13 +33,13 @@ class UserSeeder extends Seeder
 
          User::create([
             'full_name' => 'Lucky Marbun',
-            'student_id_number' => '123456789',
+            'student_id_number' => '987554321',
             'entry_year' => '2016',
             'student_major' => 'Computer Science',
             'username' => 'luckymarbun',
             'email' => 'luckymarbun@example.com',
             'role' => 'user',
-            'password' => bcrypt('lucky123')
+            'password' => bcrypt('password')
         ]);
 
          User::create([
@@ -44,7 +50,7 @@ class UserSeeder extends Seeder
             'username' => 'janesmith',
             'email' => 'janesmith@example.com',
             'role' => 'user',
-            'password' => bcrypt('password123')
+            'password' => bcrypt('password')
         ]);
 
         User::create([
@@ -54,8 +60,8 @@ class UserSeeder extends Seeder
             'student_major' => 'Computer Science',
             'username' => 'johndoe',
             'email' => 'johndoe@example.com',
-            'role' => 'admin',
-            'password' => bcrypt('secret123')
+            'role' => 'user',
+            'password' => bcrypt('password')
         ]);
         
         User::create([
@@ -65,8 +71,8 @@ class UserSeeder extends Seeder
             'student_major' => 'Electrical Engineering',
             'username' => 'davidjohnson',
             'email' => 'davidjohnson@example.com',
-            'role' => 'admin',
-            'password' => bcrypt('securepass456')
+            'role' => 'user',
+            'password' => bcrypt('password')
         ]);
         
         User::create([
@@ -76,8 +82,8 @@ class UserSeeder extends Seeder
             'student_major' => 'Business Management',
             'username' => 'sarahwilliams',
             'email' => 'sarahwilliams@example.com',
-            'role' => 'admin',
-            'password' => bcrypt('mypassword789')
+            'role' => 'user',
+            'password' => bcrypt('password')
         ]);
 
         User::create([
@@ -87,8 +93,8 @@ class UserSeeder extends Seeder
             'student_major' => 'Graphic Design',
             'username' => 'michaelbrown',
             'email' => 'michaelbrown@example.com',
-            'role' => 'admin',
-            'password' => bcrypt('hello123')
+            'role' => 'user',
+            'password' => bcrypt('password')
         ]);
         
         User::create([
@@ -98,8 +104,8 @@ class UserSeeder extends Seeder
             'student_major' => 'English Language',
             'username' => 'emilydavis',
             'email' => 'emilydavis@example.com',
-            'role' => 'admin',
-            'password' => bcrypt('password456')
+            'role' => 'user',
+            'password' => bcrypt('password')
         ]);
 
         User::create([
@@ -109,8 +115,8 @@ class UserSeeder extends Seeder
             'student_major' => 'Finance',
             'username' => 'jamesmiller',
             'email' => 'jamesmiller@example.com',
-            'role' => 'admin',
-            'password' => bcrypt('pass1234')
+            'role' => 'user',
+            'password' => bcrypt('password')
         ]);
         
         User::create([
@@ -120,8 +126,8 @@ class UserSeeder extends Seeder
             'student_major' => 'Psychology',
             'username' => 'oliviawilson',
             'email' => 'oliviawilson@example.com',
-            'role' => 'admin',
-            'password' => bcrypt('secret789')
+            'role' => 'user',
+            'password' => bcrypt('password')
         ]);
 
         User::create([
@@ -131,8 +137,8 @@ class UserSeeder extends Seeder
             'student_major' => 'Mass Communication',
             'username' => 'ethantaylor',
             'email' => 'ethantaylor@example.com',
-            'role' => 'admin',
-            'password' => bcrypt('mypass123')
+            'role' => 'user',
+            'password' => bcrypt('password')
         ]);
         
         User::create([
@@ -142,8 +148,8 @@ class UserSeeder extends Seeder
             'student_major' => 'Civil Engineering',
             'username' => 'sophiaanderson',
             'email' => 'sophiaanderson@example.com',
-            'role' => 'admin',
-            'password' => bcrypt('securepass123')
+            'role' => 'user',
+            'password' => bcrypt('password')
         ]);
 
             

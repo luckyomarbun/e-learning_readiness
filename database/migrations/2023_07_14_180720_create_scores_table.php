@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQuestionsTable extends Migration
+class CreateScoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateQuestionsTable extends Migration
      */
     public function up()
     {
-        
-        Schema::create('questions', function (Blueprint $table) {
-            $table->bigIncrements('id');
+        Schema::create('scores', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('student_id_number')->references('student_id_number')->on('users');
             $table->foreignId('section_id')->references('id')->on('sections');
-            $table->string('value');
-            // $table->string('section');
+            $table->float('score');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('questions');
+        Schema::dropIfExists('scores');
     }
 }

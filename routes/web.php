@@ -8,12 +8,14 @@ use App\Http\Controllers\CriteriaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SurveyController;
 use App\Http\Controllers\ValueWeightController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Models\CriteriaComparison;
+use App\Models\Question;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,9 +55,10 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::get('/dashboard-user', function() {
-    return view('dashboardU.index');
-})->middleware('auth');
+
+// Route::get('/dashboard-user', function() {
+//     return view('dashboardU.index');
+// })->middleware('auth');
 
 
 
@@ -63,6 +66,9 @@ Route::resource('/alternative', AlternativeController::class);
 Route::get('/alternative/delete/{id}', [AlternativeController::class, 'delete']);
 
 Route::resource('/survey', SurveyController::class);
+
+Route::resource('/question', QuestionController::class);
+Route::get('/question/{id}', [QuestionController::class, 'get']);
 
 Route::resource('/criteria', CriteriaController::class);
 Route::get('/criteria/delete/{id}', [CriteriaController::class, 'delete']);

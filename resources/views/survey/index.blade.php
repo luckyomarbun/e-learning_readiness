@@ -25,6 +25,7 @@
             <div class="col-lg-6">
                 <div class="row">
                     <div class="col text-right">
+                        
                         <a class="btn btn-primary btn-icon text-right {{ empty($selectedSectionId) ? 'disabled' : '' }}" data-toggle="modal" data-bs-target="#smallButton" data-attr="/survey/create?selectedSectionId={{ $selectedSectionId }}" data-target="#smallModal" id="smallButton">
                             <span class="icon text-white-50-right">
                                 <i class="fas fa-plus"></i>
@@ -34,7 +35,7 @@
 
                     </div>
                     <div class="col text-right">
-                        <div class="dropdown no-arrow">
+                        <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ $selectedSectionId ? $section->where('id', $selectedSectionId)->pluck('value')->first() : 'Please select section' }}
                             </button>

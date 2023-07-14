@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use App\Models\Question;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class QuestionSeeder extends Seeder
 {
@@ -14,6 +16,8 @@ class QuestionSeeder extends Seeder
      */
     public function run()
     {
+
+        Question::truncate();
         Question::create([
             'value' => 'I know the basic functions of computer hardware (CPU and monitor) and its peripherals like the printer, speaker, keyboard, mouse, etc. ',
             'section_id' => 1

@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\Alternative;
+use App\Models\Question;
+use App\Models\Section;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,11 +18,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            ValueWeightSeeder::class,
-            IndeksRandomConsistencySeeder::class,
-            AlternativeSeeder::class,
-            CriteriaSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            SectionSeeder::class,
+            QuestionSeeder::class,
+            ScoreSeeder::class
         ]);
         // User::factory(3)->create();
     }

@@ -26,13 +26,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            $user = Auth::user();
-            if ($user->role == 'user') {
-                return redirect()->intended('/dashboard-user')->with('active', 'dashboard');
-            } else if ($user->role == 'admin') {
-                // dump('ADMIN');
-                return redirect()->intended('/dashboard')->with('active', 'dashboard');
-            }
+            return redirect()->intended('/dashboard')->with('active', 'dashboard');
         }
 
         return back()->with('loginError', 'Invalid credentials!');
