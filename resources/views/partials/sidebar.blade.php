@@ -21,18 +21,21 @@
 
     <!-- Divider -->
     <hr class="sidebar-divider">
-
+    @if(auth()->user()->role !== 'user')    
     <li class="nav-item {{ Request::is('survey') ? 'active' : '' }}">
         <a class="nav-link" href="/survey">
             <i class="fas fa-user-friends"></i>
             <span>Survey</span></a>
     </li>
+    @endif
 
+    @if(auth()->user()->role !== 'user')   
     <li class="nav-item {{ Request::is('value-weight') ? 'active' : '' }}">
         <a class="nav-link" href="/value-weight">
             <i class="fas fa-balance-scale"></i>
             <span>Coresponden</span></a>
     </li>
+    @endif
 
     <!-- <li class="nav-item  {{ Request::is('criteria') ? 'active' : '' }}">
         <a class="nav-link" href="/criteria">
