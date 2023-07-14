@@ -260,6 +260,11 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
+            'value' => 'The instructor should help to keep course participants engaged and participating in productive dialogue.',
+            'section_id' => 4
+        ]);
+
+        Question::create([
             'value' => 'The instructor should help keep the course participants on a task in a way that would help me to learn.',
             'section_id' => 4
         ]);
