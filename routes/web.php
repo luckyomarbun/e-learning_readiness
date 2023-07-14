@@ -53,7 +53,7 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
-Route::get('/dashboard', function() {
+Route::get('/dashboard-user', function() {
     return view('dashboardU.index');
 })->middleware('auth');
 

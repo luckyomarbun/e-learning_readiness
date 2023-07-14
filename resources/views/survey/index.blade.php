@@ -25,25 +25,25 @@
             <div class="col-lg-6">
                 <div class="row">
                     <div class="col text-right">
-                        <a href="/alternative/create" class="btn btn-primary btn-icon text-right">
+                        <a class="btn btn-primary btn-icon text-right {{ empty($selectedSectionId) ? 'disabled' : '' }}" data-toggle="modal" data-bs-target="#smallButton" data-attr="/survey/create?selectedSectionId={{ $selectedSectionId }}" data-target="#smallModal" id="smallButton">
                             <span class="icon text-white-50-right">
                                 <i class="fas fa-plus"></i>
                             </span>
-                            <!-- <span class="text-right">Tambah Pertanyaan</span> -->
+                            <span class="text-right">Tambah Pertanyaan</span>
                         </a>
-                    </div>
 
+                    </div>
                     <div class="col text-right">
-                        <div class="dropdown no-arrow mb-4">
+                        <div class="dropdown no-arrow">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Please select section
+                                {{ $selectedSectionId ? $section->where('id', $selectedSectionId)->pluck('value')->first() : 'Please select section' }}
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Technological Skills</a>
-                                <a class="dropdown-item" href="#">Study Habits & Skills</a>
-                                <a class="dropdown-item" href="#">Cognitive Preseence</a>
-                                <a class="dropdown-item" href="#">Teaching Preseence</a>
-                                <a class="dropdown-item" href="#">Social Preseence</a>
+                                @foreach($section as $index => $section)
+                                <a class="dropdown-item {{ $section->id == $selectedSectionId ? 'active' : '' }}" href="/survey?sectionId={{ $section->id }}">
+                                    {{ $section->value }}
+                                </a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -73,18 +73,14 @@
                             @foreach($question as $index => $question)
                             <tr>
                                 <th class="w-auto" scope="row">{{ $index+1 }}</th>
-                                <td class="w-auto">{{ $question->name; }}</td>
+                                <td class="w-auto">{{ $question->value; }}</td>
                                 <td class="w-auto">{{ $question->created_at; }}</td>
-                                <!-- <td>{{ $alternative->updated_at; }}</td> -->
                                 <td class="w-auto">
-                                    <!-- <a href="/alternative/{{$alternative->id}}/edit" class="btn btn-primary btn-circle">
-                                        <i class="fas fa-pencil-square-o"></i>
-                                    </a> -->
-                                    <a class="btn btn-primary btn-circle" data-toggle="modal" data-bs-target="#smallButton" data-attr="/alternative/{{$alternative->id}}/edit" data-target="#smallModal" id="smallButton">
+                                    <a class="btn btn-primary btn-circle" data-toggle="modal" data-bs-target="#smallButton" data-attr="/survey/{{$question->id}}/edit" data-target="#smallModal" id="smallButton">
                                         <i class="fas fa-pencil-square-o"></i>
                                     </a>
 
-                                    <a class="btn btn-danger btn-circle" data-toggle="modal" data-bs-target="#smallButton" data-attr="/alternative/delete/{{ $alternative->id }}" data-target="#smallModal" id="smallButton">
+                                    <a class="btn btn-danger btn-circle" data-toggle="modal" data-bs-target="#smallButton" data-attr="/alternative/delete/{{ $question->id }}" data-target="#smallModal" id="smallButton">
                                         <i class="fas fa-trash"></i>
                                     </a>
                                 </td>

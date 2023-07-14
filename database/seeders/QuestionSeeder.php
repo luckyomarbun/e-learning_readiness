@@ -16,7 +16,7 @@ class QuestionSeeder extends Seeder
     {
         Question::create([
             'value' => 'Siapakah albert einstein',
-            'section_id' => 'Technological Skills'
+            'section_id' => 1
         ]);
     }
 }
