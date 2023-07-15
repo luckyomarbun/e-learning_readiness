@@ -77,9 +77,52 @@ class UserSeeder extends Seeder
         $entryYears = [2015, 2016, 2017, 2018];
         $studentMajorIndex = 0;
 
+        $studentIdNumbers = [
+            107726957,
+            118279081,
+            122621314,
+            152753641,
+            166563069,
+            191559731,
+            205004729,
+            225776870,
+            231208614,
+            270116860,
+            291122595,
+            303290512,
+            314421644,
+            333517634,
+            351064729,
+            376946652,
+            388938081,
+            401700715,
+            417054211,
+            436220685,
+            448833569,
+            454942665,
+            461343465,
+            511927218,
+            545005944,
+            576659010,
+            577548608,
+            579032051,
+            630897849,
+            653083416,
+            681697932,
+            699943095,
+            705334002,
+            717986995,
+            725388588,
+            734805849,
+            745178853,
+            781938900,
+            788533716,
+            880159822
+        ];
+
         for ($i = 0; $i < 40; $i++) {
             $fullName = $this->generateUniqueFullName($i, $fullNames);
-            $studentIdNumber = $this->generateUniqueStudentIdNumber();
+            $studentIdNumber = $studentIdNumbers[$i];
             $entryYear = $this->generateEntryYear($i, $entryYears);
             $studentMajor = $this->generateStudentMajor($studentMajorIndex, $studentMajorOptions);
             $username = $this->generateUsername($fullName);
@@ -105,32 +148,20 @@ class UserSeeder extends Seeder
         }
     }
 
-        /**
- * Generate a unique full name based on the given index and array of names.
- *
- * @param int $index
- * @param array $names
- * @return string
- */
-private function generateUniqueFullName(int $index, array $names): string
-{
-    $fullNameIndex = $index % count($names);
-    $fullName = $names[$fullNameIndex];
-    return $fullName;
-}
-    
-
     /**
-     * Generate a unique student ID number.
+     * Generate a unique full name based on the given index and array of names.
      *
-     * @return int
+     * @param int $index
+     * @param array $names
+     * @return string
      */
-    private function generateUniqueStudentIdNumber(): int
+    private function generateUniqueFullName(int $index, array $names): string
     {
-        $studentIdNumber = rand(100000000, 999999999);
-        return $studentIdNumber;
+        $fullNameIndex = $index % count($names);
+        $fullName = $names[$fullNameIndex];
+        return $fullName;
     }
-
+    
     /**
      * Generate entry year based on the given index and array of years.
      *
