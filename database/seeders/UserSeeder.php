@@ -21,9 +21,20 @@ class UserSeeder extends Seeder
         User::truncate();
         Schema::enableForeignKeyConstraints();
 
+        User::create([
+            'full_name' => 'Admin',
+            'student_id_number' => '00000000',
+            'entry_year' => '0000',
+            'student_major' => 'Information Systems',
+            'username' => 'admin',
+            'email' => 'admin@telkomuniversity.ac.id',
+            'role' => 'admin',
+            'password' => bcrypt('password')
+        ]);
+
         $fullNames = [
             'John Doe',
-            'Jane Smith',
+            'Lucky Marbun',
             'Michael Brown',
             'Sophia Anderson',
             'David Johnson',
