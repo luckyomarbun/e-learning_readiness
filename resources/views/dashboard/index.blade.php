@@ -21,7 +21,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Jumlah Civitas Telkom University</h6>
             </div>
             <div class="card-body">
-                <p>Jumlah Civitas: 120</p>
+                <p>Jumlah Civitas: {{$userCount}}</p>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Jumlah Orang yang Sudah Mengisi Survei</h6>
             </div>
             <div class="card-body">
-                <p>Jumlah yang Sudah Mengisi Survei: 80</p>
+                <p>Jumlah yang Sudah Mengisi Survei: {{$userCountSurvey}}</p>
             </div>
         </div>
     </div>
@@ -63,19 +63,20 @@
 </div>
 @endsection
 
-@push('scripts')
+
+@section('javascript_content')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-
 // Mendapatkan data untuk diagram pie chart
     var pieData = {
         labels: ['Lolos', 'Kurang Lolos', 'Tidak Lolos'],
         datasets: [{
-            data: [{{ 100 }}, {{ 250 }}, {{ 50 }}],
+            data: [100 ,  250 ,  50 ],
             backgroundColor: ['#36a2eb', '#ff6384', '#ffcd56'],
             hoverBackgroundColor: ['#36a2eb', '#ff6384', '#ffcd56']
         }]
     };
+
 
     // Mendapatkan data untuk diagram batang
     var barData = {
@@ -84,7 +85,7 @@
             label: 'Jumlah yang Lolos',
             backgroundColor: '#36a2eb',
             borderColor: '#36a2eb',
-            data: [{{ 2015 }}, {{ 2016 }}, {{ 2017 }}], // Ubah dengan data jumlah yang lolos berdasarkan tahun masuk yang sesuai
+            data: [ 2015 ,  2016 ,  2017 ], // Ubah dengan data jumlah yang lolos berdasarkan tahun masuk yang sesuai
         }]
     };
 
@@ -113,4 +114,5 @@
         }
     });
 </script>
-@endpush
+@endsection
+

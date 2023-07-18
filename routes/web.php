@@ -54,6 +54,7 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::resource('/dashboard', DashboardController::class)->middleware('auth');
 
 
 // Route::get('/dashboard-user', function() {
@@ -66,6 +67,10 @@ Route::resource('/alternative', AlternativeController::class);
 Route::get('/alternative/delete/{id}', [AlternativeController::class, 'delete']);
 
 Route::resource('/survey', SurveyController::class);
+Route::post('/survey/submit', [SurveyController::class, 'submit'])->name('survey.submit');
+
+
+
 
 Route::resource('/question', QuestionController::class);
 Route::get('/question/{id}', [QuestionController::class, 'get']);

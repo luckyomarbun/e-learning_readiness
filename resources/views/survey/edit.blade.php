@@ -7,8 +7,8 @@
     <input type="hidden" name="id" value="{{ $question->id }}" />
     <div class="form">
         <label for="name">Question</label>
-        <input type="text" name="value" class="form-control rounded-top  @error('name') is-invalid @enderror" id="name" placeholder="Nama" required value="{{ old('value', $question->value) }}">
-        @error('name')
+        <input type="text" name="value" class="form-control rounded-top  @error('value') is-invalid @enderror" id="value" placeholder="Nama" required value="{{ old('value', $question->value) }}">
+        @error('value')
         <div class="invalid-feedback">
             {{ $message }}
         </div>

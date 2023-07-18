@@ -3,373 +3,130 @@
 @section('container')
 <div class="row justify-content-center">
     <div class="col-lg-10">
+        <!-- @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif -->
+
+        @if ($errors->any())
+        <div id="error-container" class="alert alert-danger alert-dismissible" role="alert">
+            <button id="close-error" type="button" class="close" data-dismiss="alert">
+                <i class="fa fa-times"></i>
+            </button>
+            @foreach ($errors->all() as $error)
+            <strong>Error !</strong> {{$error}}
+            @endforeach
+        </div>
+        @endif
+
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Selamat Datang</h6>
             </div>
             <div class="card-body">
-                <!-- <p>Ini merupakan list pertanyaan survey</p> -->
+                <form action="{{ route('survey.submit') }}" method="POST">
+                    @csrf
+                    @php
+                         $sectionCount = count($sections);
+                    $options = [
+                    1 => 'Sangat Tidak Setuju',
+                    2 => 'Tidak Setuju',
+                    3 => 'Netral',
+                    4 => 'Setuju',
+                    5 => 'Sangat Setuju',
+                    ];
+                    @endphp
 
-                <div>
-                    <p>
-                        Untuk mengetahui kesiapan Anda dalam penerapan pembelajaran online, Anda diharuskan mengisi beberapa pertanyaan di bawah. Terdapat 5 kategori pertanyaan, Jawab setiap pertanyaan yang ada secara jujur dan sesuai kemampuan kalian.
+                    @for ($i = 0; $i < $sectionCount; $i++) 
+                    <div class="section" id="section{{ $i }}" style="display: {{ $i === 0 ? 'block' : 'none' }}">
+                        <h3 class="text-center">{{ $sections[$i]->value }}</h3>
+                        @php
+                        $questionNumber = 1;
+                        @endphp
 
-                        (Nilai 1 = sangat tidak setuju; Nilai 2 = tidak setuju; Nilai 3 = netral; Nilai 4 = setuju; Nilai 5 = sangat setuju)
-                        *Disclaimer: Seluruh informasi data yang diberikan akan dirahasiakan dan hanya digunakan untuk kepentingan penelitian.
-                    </p>
-                </div>
-
-                <!-- style for radio button -->
-                <!-- <div class="radio-group" style="display: flex; align-items:center; justify-content:center ">
-                    <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                        <input type="radio" name="option" value="option1">
-                        Sangat Tidak Setuju
-                    </label>
-                    <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                        <input type="radio" name="option" value="option2">
-                        Tidak Setuju
-                    </label>
-                    <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                        <input type="radio" name="option" value="option3">
-                        Netral
-                    </label>
-                    <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                        <input type="radio" name="option" value="option4">
-                        Setuju
-                    </label>
-                    <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                        <input type="radio" name="option" value="option5">
-                        Sangat Setuju
-                    </label>
-                </div> -->
-
-                <div>
-                    <div style="justify-content: center; align-items: center; text-align: center;">
-                        
-                        <h4 style="font-size: 30px; font-weight:bold">Technological Skills</h3>
-                        <br>
-                    </div >
-                    <div>
-                        
-                        <div>
-                            <h6 class="question">1. Apakah Anda merasa percaya diri dalam menggunakan perangkat teknologi seperti komputer, laptop, atau smartphone?</h6>
-                            <div class="radio-group" style="display: flex; align-items:center; justify-content:center ">
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option1">
-                                    Sangat Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option2">
-                                    Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option3">
-                                    Netral
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option4">
-                                    Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option5">
-                                    Sangat Setuju
-                                </label>
-                            </div>
+                        @foreach ($sections[$i]->questions as $index => $question)
+                        <b>{{ $index + 1 }}. {{ $question->value }}</b>
+                        <div style="display: flex; justify-content: center; margin-top: 10px;">
+                            @foreach ($options as $weight => $optionText)
+                            <label style="margin-right:60px">
+                            <input type="radio" name="answers[{{ $sections[$i]->id }}][{{ $question->id }}]"
+                       value="{{ $weight }}" {{ old("answers.{$sections[$i]->id}.{$question->id}") == $weight ? 'checked' : '' }}>
+                                {{ $optionText }}
+                            </label>
+                            @endforeach
                         </div>
-                        <br>
+                        @endforeach
 
-                        <div>
-                            <h6 class="question">2. Apakah Anda memiliki pengalaman sebelumnya dalam menggunakan aplikasi dan alat-alat e-learning?</h6>
-                            <div class="radio-group" style="display: flex; align-items:center; justify-content:center ">
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option1">
-                                    Sangat Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option2">
-                                    Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option3">
-                                    Netral
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option4">
-                                    Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option5">
-                                    Sangat Setuju
-                                </label>
-                            </div>
+
+                        <div class="button-container">
+                            @if ($i > 0)
+                            <button type="button" class="previous w-30 btn btn-md btn-primary mt-3" data-section="{{ $i }}">Previous</button>
+                            @endif
+
+                            @if ($i < $sectionCount - 1) 
+                            <button type="button" class="next w-30 btn btn-md btn-primary mt-3" data-section="{{ $i }}">Next</button>
+                            @endif
+                            @if ($i == $sectionCount - 1) 
+                            <button class="w-30 btn btn-md btn-primary mt-3" type="submit">Submit</button>
+                            @endif
                         </div>
-                        <br>
-
-                        <div>
-                            <h6 class="question">3. Apakah Anda memiliki keterampilan dalam mengelola dan menyimpan file digital?</h6>
-                            <div class="radio-group" style="display: flex; align-items:center; justify-content:center ">
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option1">
-                                    Sangat Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option2">
-                                    Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option3">
-                                    Netral
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option4">
-                                    Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option5">
-                                    Sangat Setuju
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div>
-                            <h6 class="question">4. Apakah Anda memiliki pemahaman dasar tentang penggunaan internet dan navigasi web?</h6>
-                            <div class="radio-group" style="display: flex; align-items:center; justify-content:center ">
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option1">
-                                    Sangat Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option2">
-                                    Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option3">
-                                    Netral
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option4">
-                                    Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option5">
-                                    Sangat Setuju
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div>
-                            <h6 class="question">5. Apakah Anda terbiasa menggunakan alat-alat kolaborasi online seperti video conference dan grup diskusi?</h6>
-                            <div class="radio-group" style="display: flex; align-items:center; justify-content:center ">
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option1">
-                                    Sangat Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option2">
-                                    Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option3">
-                                    Netral
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option4">
-                                    Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option5">
-                                    Sangat Setuju
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div>
-                            <h6 class="question">6. Apakah Anda memiliki keterampilan dasar dalam memecahkan masalah teknis yang mungkin timbul selama e-learning?</h6>
-                            <div class="radio-group" style="display: flex; align-items:center; justify-content:center ">
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option1">
-                                    Sangat Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option2">
-                                    Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option3">
-                                    Netral
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option4">
-                                    Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option5">
-                                    Sangat Setuju
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div>
-                            <h6 class="question">7. Apakah Anda dapat mengelola dan menggunakan alat multimedia seperti audio, video, atau presentasi dalam konteks pembelajaran?</h6>
-                            <div class="radio-group" style="display: flex; align-items:center; justify-content:center ">
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option1">
-                                    Sangat Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option2">
-                                    Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option3">
-                                    Netral
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option4">
-                                    Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option5">
-                                    Sangat Setuju
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div>
-                            <h6 class="question">8. Apakah Anda terbiasa menggunakan alat-alat e-learning yang digunakan oleh lembaga Anda?</h6>
-                            <div class="radio-group" style="display: flex; align-items:center; justify-content:center ">
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option1">
-                                    Sangat Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option2">
-                                    Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option3">
-                                    Netral
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option4">
-                                    Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option5">
-                                    Sangat Setuju
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-
-                        <div>
-                            <h6 class="question">9. Apakah Anda memiliki keterampilan dalam menggunakan alat-alat dasar seperti pengolah kata, spreadsheet, dan presentasi?</h6>
-                            <div class="radio-group" style="display: flex; align-items:center; justify-content:center ">
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option1">
-                                    Sangat Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option2">
-                                    Tidak Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option3">
-                                    Netral
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option4">
-                                    Setuju
-                                </label>
-                                <label style="display: flex; flex-direction:column; align-items:center;margin-right:40px">
-                                    <input type="radio" name="option" value="option5">
-                                    Sangat Setuju
-                                </label>
-                            </div>
-                        </div>
-                        <br>
-
-                        <!-- <div>
-                            <h6 class="question" 10. Apakah Anda memiliki pemahaman dasar tentang keamanan digital dan privasi online?</h6>
-                                <input type="radio" id="1">
-                                <label for="1">Sangat Kurang sesuai</label>
-                                <input type="radio" id="2">
-                                <label for="2">Kurang sesuai</label>
-                                <input type="radio" id="3">
-                                <label for="3">Netral</label>
-                                <input type="radio" id="4">
-                                <label for="4">Sesuai</label>
-                                <input type="radio" id="5">
-                                <label for="5">Sangat Sesuai</label>
-                        </div> -->
-                        <br>
-
-                        <!-- previous and next button -->
-                        <a href="#" class="previous">&laquo; Previous</a>
-                        <a href="#" class="next">Next &raquo;</a>
-                </div>
-                <!-- <div>
-                    <h4>A</h3>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                </div>
-                <div>
-                    <h4>A</h3>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                </div>
-                <div>
-                    <h4>A</h3>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                </div>
-                <div>
-                    <h4>A</h3>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                        <h6></h6>
-                </div> -->
-
 
             </div>
+                    
 
+      
+            </form>
+            @endfor
         </div>
     </div>
 </div>
+</div>
+@endsection
+
+@section('javascript_content')
+<script>
+    const previousButtons = document.querySelectorAll('.previous');
+    const nextButtons = document.querySelectorAll('.next');
+    const sections = document.querySelectorAll('.section');
+
+    previousButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const sectionId = button.getAttribute('data-section');
+            goToSection(parseInt(sectionId) - 1);
+        });
+    });
+
+    nextButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const sectionId = button.getAttribute('data-section');
+            goToSection(parseInt(sectionId) + 1);
+        });
+    });
+
+    function goToSection(sectionId) {
+        sections.forEach(section => {
+            section.style.display = 'none';
+        });
+
+        document.querySelector(`#section${sectionId}`).style.display = 'block';
+    }
+</script>
+<script>
+    // JavaScript code to handle previous and next button clicks
+    setTimeout(function() {
+        document.getElementById('error-container').style.display = 'none';
+    }, 3000);
+
+    // Close button
+    document.getElementById('close-error').addEventListener('click', function() {
+        document.getElementById('error-container').style.display = 'none';
+    });
+</script>
+
+
 @endsection
