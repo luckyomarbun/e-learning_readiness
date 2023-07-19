@@ -24,7 +24,10 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('user');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('survey_clicked')->default(false);
             $table->boolean('survey_completed')->default(false);
+            $table->timestamp('survey_taken_date')->nullable();
+            $table->float('final_score')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -30,10 +30,10 @@
     @endif
 
     @if(auth()->user()->role !== 'user')   
-    <li class="nav-item {{ Request::is('value-weight') ? 'active' : '' }}">
-        <a class="nav-link" href="/value-weight">
+    <li class="nav-item {{ Request::is('respondents') ? 'active' : '' }}">
+        <a class="nav-link" href="/respondents">
             <i class="fas fa-balance-scale"></i>
-            <span>Coresponden</span></a>
+            <span>Respondents</span></a>
     </li>
     @endif
 

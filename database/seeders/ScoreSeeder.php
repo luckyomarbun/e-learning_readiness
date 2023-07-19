@@ -223,17 +223,24 @@ class ScoreSeeder extends Seeder
         ];
 
         foreach ($data as $item) {
+            $final_score = 0;
             for ($i = 0; $i < count($item['section_id']); $i++) {
+                $sectionScore = number_format((($item['score'][$i]/100)*5),1);
                 $score = [
                     'student_id_number' => $item['student_id_number'],
                     'section_id' => $item['section_id'][$i],
-                    'score' => $item['score'][$i],
+                    'score' =>  $sectionScore,
                     'created_at' => now(),
                     'updated_at' => now()
                 ];
-
+                $final_score+=$sectionScore;
                 DB::table('scores')->insert($score);
             }
+
+            DB::table('users')
+            ->where('student_id_number',$item['student_id_number'])
+            ->update(['survey_clicked'=>1,'survey_completed'=>1,'survey_taken_date'=>now(),'final_score'=>($final_score/count($item['section_id']))]);
+            $final_score = 0;
         }
     }
 }

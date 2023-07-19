@@ -26,13 +26,14 @@
 
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Selamat Datang</h6>
+                <h3 class="m-0 font-weight-bold text-primary head-title text-center">{{ $sections[0]->value }}</h3>
+                <label class="text-justify head-description">{{ $sections[0]->description}}</label>
             </div>
             <div class="card-body">
                 <form action="{{ route('survey.submit') }}" method="POST">
                     @csrf
                     @php
-                         $sectionCount = count($sections);
+                    $sectionCount = count($sections);
                     $options = [
                     1 => 'Sangat Tidak Setuju',
                     2 => 'Tidak Setuju',
@@ -41,10 +42,12 @@
                     5 => 'Sangat Setuju',
                     ];
                     @endphp
-
                     @for ($i = 0; $i < $sectionCount; $i++) 
                     <div class="section" id="section{{ $i }}" style="display: {{ $i === 0 ? 'block' : 'none' }}">
-                        <h3 class="text-center">{{ $sections[$i]->value }}</h3>
+                        <template id="templateContentTitle">
+                            <h2 class="text-center content-title">{{ $sections[$i]->value }}</h2>
+                            <label class="text-justify content-description">{{ $sections[$i]->description}}</label>
+                        </template>
                         @php
                         $questionNumber = 1;
                         @endphp
@@ -54,8 +57,7 @@
                         <div style="display: flex; justify-content: center; margin-top: 10px;">
                             @foreach ($options as $weight => $optionText)
                             <label style="margin-right:60px">
-                            <input type="radio" name="answers[{{ $sections[$i]->id }}][{{ $question->id }}]"
-                       value="{{ $weight }}" {{ old("answers.{$sections[$i]->id}.{$question->id}") == $weight ? 'checked' : '' }}>
+                                <input type="radio" name="answers[{{ $sections[$i]->id }}][{{ $question->id }}]" value="{{ $weight }}" {{ old("answers.{$sections[$i]->id}.{$question->id}") == $weight ? 'checked' : '' }}>
                                 {{ $optionText }}
                             </label>
                             @endforeach
@@ -68,20 +70,17 @@
                             <button type="button" class="previous w-30 btn btn-md btn-primary mt-3" data-section="{{ $i }}">Previous</button>
                             @endif
 
-                            @if ($i < $sectionCount - 1) 
-                            <button type="button" class="next w-30 btn btn-md btn-primary mt-3" data-section="{{ $i }}">Next</button>
-                            @endif
-                            @if ($i == $sectionCount - 1) 
-                            <button class="w-30 btn btn-md btn-primary mt-3" type="submit">Submit</button>
-                            @endif
+                            @if ($i < $sectionCount - 1) <button type="button" class="next w-30 btn btn-md btn-primary mt-3" data-section="{{ $i }}">Next</button>
+                                @endif
+
+                                @if ($i == $sectionCount - 1)
+                                <button class="w-30 btn btn-md btn-primary mt-3" type="submit">Submit</button>
+                                @endif
                         </div>
-
+              
             </div>
-                    
-
-      
-            </form>
             @endfor
+              </form>
         </div>
     </div>
 </div>
@@ -113,6 +112,10 @@
             section.style.display = 'none';
         });
 
+        const contentTitle = document.querySelector(`#section${sectionId} #templateContentTitle`).content.querySelector(".content-title").textContent
+        document.querySelector('.head-title').textContent = contentTitle
+        const contentDesc = document.querySelector(`#section${sectionId} #templateContentTitle`).content.querySelector(".content-description").textContent
+        document.querySelector('.head-description').textContent = contentDesc
         document.querySelector(`#section${sectionId}`).style.display = 'block';
     }
 </script>

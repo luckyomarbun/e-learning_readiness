@@ -11,6 +11,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SurveyController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ValueWeightController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Category;
@@ -54,7 +55,9 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-Route::resource('/dashboard', DashboardController::class)->middleware('auth');
+
+Route::get('/respondents', [UserController::class, 'index'])->name('respondents')->middleware('auth');
+
 
 
 // Route::get('/dashboard-user', function() {

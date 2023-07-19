@@ -8,7 +8,7 @@
                 <h6 class="m-0 font-weight-bold text-primary">Selamat Datang</h6>
             </div>
             <div class="card-body">
-                <p>Halo {{ auth()->user()->name }}, selamat datang di aplikasi sistem E-Learning Readiness</p>
+                <p>Halo {{ auth()->user()->username }}, selamat datang di aplikasi sistem E-Learning Readiness</p>
             </div>
         </div>
     </div>
@@ -63,29 +63,29 @@
 </div>
 @endsection
 
-
 @section('javascript_content')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+
 // Mendapatkan data untuk diagram pie chart
     var pieData = {
-        labels: ['Lolos', 'Kurang Lolos', 'Tidak Lolos'],
+        labels: ['Ready Go Ahead', 'Need a Few Improvement', 'Need Some Work','Need A Lot of Work'],
         datasets: [{
-            data: [100 ,  250 ,  50 ],
-            backgroundColor: ['#36a2eb', '#ff6384', '#ffcd56'],
-            hoverBackgroundColor: ['#36a2eb', '#ff6384', '#ffcd56']
+            data: {{Js::from($pieData) }},
+            backgroundColor: ['#36a2eb','#24fc03', '#ffcd56','#ff6384'],
+            hoverBackgroundColor: ['#36a2eb','#24fc03','#ffcd56', '#ff6384']
         }]
     };
 
 
     // Mendapatkan data untuk diagram batang
     var barData = {
-        labels: ['Tahun Masuk 1', 'Tahun Masuk 2', 'Tahun Masuk 3'], // Ubah dengan data tahun masuk yang sesuai
+        labels: {{Js::from($data['years']) }}, // Ubah dengan data tahun masuk yang sesuai
         datasets: [{
             label: 'Jumlah yang Lolos',
             backgroundColor: '#36a2eb',
             borderColor: '#36a2eb',
-            data: [ 2015 ,  2016 ,  2017 ], // Ubah dengan data jumlah yang lolos berdasarkan tahun masuk yang sesuai
+            data: {{Js::from($data['total']) }}, // Ubah dengan data jumlah yang lolos berdasarkan tahun masuk yang sesuai
         }]
     };
 

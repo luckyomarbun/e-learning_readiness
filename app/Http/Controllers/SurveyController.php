@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Question;
+use App\Models\Score;
 use App\Models\Section;
+use App\Models\User;
 use Facade\Ignition\DumpRecorder\Dump;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class SurveyController extends Controller
@@ -26,8 +30,9 @@ class SurveyController extends Controller
 
     public function submit(Request $request)
     {
-        $validator = FacadesValidator::make($request->all(), [
-        ]);
+
+        $validator = FacadesValidator::make($request->all(), []);
+        
         $validator->after(function ($validator) use ($request) {
             $answers = $request->input('answers');
             $totalAnsweredQuestions = 0;
@@ -43,14 +48,32 @@ class SurveyController extends Controller
                     $validator->errors()->add('answers', 'Please answer all question!');
                 }
             }
-
-
         });
 
         if ($validator->fails()) {
-            // dump('masuk');
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        //add scores
+        $answers = $request->input('answers');
+        $userAuth = Auth::user();
+        $final_score = 0;
+        foreach($answers as $key => $answer){
+            $score = new Score();
+            $totalQuestion = count($answer);
+            $totalScoreAllQuestion = 0;
+            foreach($answer as $value){
+                $totalScoreAllQuestion+=$value;
+            }
+            $totalScoreSection =  $totalScoreAllQuestion/($totalQuestion*5);
+            $score->student_id_number = $userAuth->student_id_number;
+            $score->section_id = $key;
+            $score->score = $totalScoreSection;
+            $score->save();
+            $final_score+=$totalScoreSection;
+        }
+        $totalSection = Section::count();
+        User::where('id', $userAuth->id)->update(['survey_completed' => 1,'survey_taken_date' => now(),'final_score'=>($final_score/$totalSection)]);
         return redirect()
             ->route('dashboard')
             ->with('success', 'Answers Has Been Submited Successfully');

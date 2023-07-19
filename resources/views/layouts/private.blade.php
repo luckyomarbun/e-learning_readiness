@@ -35,6 +35,8 @@
   <!-- <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet"> -->
   <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
+  @yield('styles')
+
 </head>
 
 <body id="page-top">

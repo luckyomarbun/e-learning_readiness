@@ -5,3 +5,8 @@ $(document).ready(function() {
     "iDisplayLength": -1
   });
 });
+
+$(document).ready(function() {
+  $('#dataTable-user').DataTable({
+  });
+});
