@@ -13,21 +13,35 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+       
         $user = Auth::user();
         if ($user->role == 'user') {
+            if( $request->isMethod('post')){
+                User::where('id', $user->id)->update(['survey_clicked'=>1]);
+                $user = Auth::user()->fresh();
+            }
+            if($user->survey_clicked == 0){
+                return view('dashboardU.index-before-survey', [
+                    'title' => 'Dashboard',
+                    'active' => 'dashboard'
+                ]);
+            }
+
             if ($user->survey_completed == 0) {
                 $sections = Section::get();
                 foreach ($sections as $section) {
                     $section->questions = Question::where('section_id', $section->id)->get();
                 }
                 return view('dashboardU.index', [
+                    'title' => 'Dashboard',
                     'active' => 'dashboard',
                     'sections' => $sections
                 ]);
             } else if ($user->survey_completed == 1) {
                 return view('dashboardU.index-after-survey', [
+                    'title' => 'Dashboard',
                     'active' => 'dashboard'
                 ]);
             }
@@ -37,50 +51,30 @@ class DashboardController extends Controller
             $dataYears = User::where('role', 'user')->distinct()->get('entry_year')->sortBy('entry_year');
             $years = [];
             $passedUser = [];
-            
             foreach ($dataYears as $year) {
+                $scores = User::select('student_id_number')->where('entry_year',$year->entry_year)->where('role','user')->where('final_score', '>=', 3.75)->count();
                 array_push($years, $year->entry_year);
-                $scores = Score::select('scores.student_id_number')
-                ->join('users', 'scores.student_id_number', '=', 'users.student_id_number')
-                ->where('users.entry_year',$year->entry_year)
-                ->groupBy('scores.student_id_number')
-                ->havingRaw('(sum(scores.score)/5) > 3.75')
-                ->count();
-                if( $scores > 0 ){
-                    array_push($passedUser,$scores);
-                } else {
-                    array_push($passedUser,0);
-                }
+                array_push($passedUser,$scores > 0 ? $scores : 0);
             }
+
             $data = ['years'=>$years,'total'=>$passedUser];
-            
-            $ready = Score::select('scores.student_id_number')
-            ->join('users', 'scores.student_id_number', '=', 'users.student_id_number')
-            ->groupBy('scores.student_id_number')
-            ->havingRaw('(sum(scores.score)/5) >= 4.2')
+
+            $ready = User::where('role','user') ->whereRaw('final_score >= 4.2')
             ->count();
 
-            $almostReady = Score::select('scores.student_id_number')
-            ->join('users', 'scores.student_id_number', '=', 'users.student_id_number')
-            ->groupBy('scores.student_id_number')
-            ->havingRaw('(sum(scores.score)/5) >= 3.4 AND (sum(scores.score)/5) < 4.2 ')
+            $almostReady = User::where('role','user')->whereRaw('final_score >= 3.4 AND final_score < 4.2 ')
             ->count();
 
-            $needSomeWork = Score::select('scores.student_id_number')
-            ->join('users', 'scores.student_id_number', '=', 'users.student_id_number')
-            ->groupBy('scores.student_id_number')
-            ->havingRaw('(sum(scores.score)/5) >= 2.6 AND (sum(scores.score)/5) < 3.4 ')
+            $needSomeWork = User::where('role','user')->whereRaw('final_score >= 2.6 AND final_score < 3.4 ')
             ->count();
 
-            $notReady = Score::select('scores.student_id_number')
-            ->join('users', 'scores.student_id_number', '=', 'users.student_id_number')
-            ->groupBy('scores.student_id_number')
-            ->havingRaw('(sum(scores.score)/5) < 2.6')
+            $notReady = User::where('role','user')->whereRaw('final_score < 2.6')
             ->count();
 
             $pieData = [$ready,$almostReady,$needSomeWork,$notReady];
 
             return view('dashboard.index', [
+                'title' => 'Dashboard',
                 'active' => 'dashboard',
                 'userCount' => $userCount,
                 'userCountSurvey' => $userCountSurvey,

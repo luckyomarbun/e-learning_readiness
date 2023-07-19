@@ -28,6 +28,20 @@ class SurveyController extends Controller
         ]);
     }
 
+    public function start()
+    {
+        User::where('id',Auth::user()->id)->update(['survey_clicked'=>1]);
+        $sections = Section::get();
+        foreach ($sections as $section) {
+            $section->questions = Question::where('section_id', $section->id)->get();
+        }
+        return view('dashboardU.index', [
+            'title' => 'Dashboard',
+            'active' => 'dashboard',
+            'sections' => $sections
+        ]);
+    }
+
     public function submit(Request $request)
     {
 
@@ -73,7 +87,7 @@ class SurveyController extends Controller
             $final_score+=$totalScoreSection;
         }
         $totalSection = Section::count();
-        User::where('id', $userAuth->id)->update(['survey_completed' => 1,'survey_taken_date' => now(),'final_score'=>($final_score/$totalSection)]);
+        User::where('id', $userAuth->id)->update(['survey_completed' => 1,'survey_taken_date' => now(),'final_score'=>($final_score/$totalSection),'survey_clicked'=>1]);
         return redirect()
             ->route('dashboard')
             ->with('success', 'Answers Has Been Submited Successfully');

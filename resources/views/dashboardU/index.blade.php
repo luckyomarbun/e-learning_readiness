@@ -3,16 +3,6 @@
 @section('container')
 <div class="row justify-content-center">
     <div class="col-lg-10">
-        <!-- @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif -->
-
         @if ($errors->any())
         <div id="error-container" class="alert alert-danger alert-dismissible" role="alert">
             <button id="close-error" type="button" class="close" data-dismiss="alert">
@@ -130,6 +120,4 @@
         document.getElementById('error-container').style.display = 'none';
     });
 </script>
-
-
 @endsection
