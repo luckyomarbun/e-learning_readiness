@@ -4,9 +4,9 @@ namespace App\Providers;
 
 
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\URL as FacadesURL;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
-use PharIo\Manifest\Url;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,7 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        FacadesURL::forceScheme('https');   
+        if(App::environment('production')){
+           URL::forceScheme('https');  
+        }
+ 
         Paginator::useBootstrap();
     }
 }
