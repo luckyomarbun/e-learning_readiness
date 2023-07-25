@@ -30,10 +30,10 @@
         <div class="topbar-divider d-none d-sm-block"></div>
 
         <!-- Nav Item - User Information -->
-        <li class="nav-item">
+        <!-- <li class="nav-item">
             <a class="nav-link text-primary" href="/login">
                 <i class="bi bi-box-arrow-in-right"></i><b> &nbsp Masuk</b></a>
-        </li>
+        </li> -->
 
     </ul>
 

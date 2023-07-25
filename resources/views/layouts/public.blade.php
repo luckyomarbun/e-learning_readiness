@@ -37,13 +37,13 @@
   </div>
 
   <!-- Footer -->
-  <footer class="sticky-footer bg-primary fixed-bottom shadow">
+  <!-- <footer class="sticky-footer bg-primary fixed-bottom shadow">
     <div class="container my-auto">
       <div class="copyright text-center text-white my-auto">
         <span>&copy; Tugas Akhir 2023. All rights reserved.</span>
       </div>
     </div>
-  </footer>
+  </footer> -->
   <!-- End of Footer -->
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

@@ -15,6 +15,16 @@ use Illuminate\Support\Facades\Validator as FacadesValidator;
 
 class SurveyController extends Controller
 {
+
+    public function survey(Request $request)
+    {
+        return view('scoring.index', [
+            'title' => 'Scoring',
+            'active' => 'Scoring'
+        ]);
+
+    }
+
     public function index(Request $request)
     {
 
