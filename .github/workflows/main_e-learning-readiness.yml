@@ -30,12 +30,15 @@ jobs:
       - name: Run composer install if composer.json exists
         if: steps.check_files.outputs.files_exists == 'true'
         run: composer validate --no-check-publish && composer install --prefer-dist --no-progress
-
+        
+      - name: Zip artifact for deployment
+        run: zip release.zip ./* .htaccess -qr
+        
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
           name: php-app
-          path: .
+          path: release.zip
 
   deploy:
     runs-on: ubuntu-latest
@@ -57,4 +60,4 @@ jobs:
           app-name: 'e-learning-readiness'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_A1B98D84F411452AB4FBD44B343DC5C1 }}
-          package: .
+          package: release.zip
