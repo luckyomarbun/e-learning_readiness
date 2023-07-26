@@ -59,36 +59,3 @@
     background-color: #4E73DF;
 }
 
-
-/* In custom.css */
-.card {
-    /* background-color: #b6bfb8; */
-    background-color: rgba(78, 115, 223, 0.5);
-    border-color: #4e73df; /* Border color */
-    color: #ffffff; /* Text color */
-    border-radius: 10px; /* Optional: Add rounded corners to the card */
-}
-
-.card-header {
-    background-color: #4e73df;
-    color: #ffffff;
-    border-radius: 10px 10px 0 0; /* Optional: Add rounded corners to the top of the card header */
-}
-
-.card-body {
-    padding: 20px; /* Add some padding to the card body */
-}
-
-/* Customize the form elements' appearance */
-.form-control {
-    background-color: #ffffff; /* Form field background color */
-    border-color: #4e73df; /* Form field border color */
-    color: #4e73df; /* Form field text color */
-}
-
-/* Optional: Style the submit button */
-.btn-primary {
-    background-color: #4e73df;
-    border-color: #4e73df;
-    color: #ffffff;
-}

@@ -27,24 +27,53 @@
   <link href="{{ asset('vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
 
   <title>{{ $title }}</title>
+  @yield('styles')
 </head>
 
 <body>
   @include('partials.public-navbar')
 
-  <div class="container mt-4">
+  {{-- <div class="container mt-4">
     @yield('container')
   </div>
 
+  
+
   <!-- Footer -->
-  <!-- <footer class="sticky-footer bg-primary fixed-bottom shadow">
+  <footer class="sticky-footer bg-primary shadow">
     <div class="container my-auto">
       <div class="copyright text-center text-white my-auto">
         <span>&copy; Tugas Akhir 2023. All rights reserved.</span>
       </div>
     </div>
-  </footer> -->
+  </footer> --}}
   <!-- End of Footer -->
+
+  <div id="content-wrapper" class="d-flex flex-column">
+
+    <!-- Main Content -->
+    <div id="content">
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid" id="container-fluid">
+        @yield('container')
+      </div>
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+              <div class="copyright text-center my-auto">
+                  <span>&copy; Tugas Akhir 2023. All rights reserved.</span>
+              </div>
+          </div>
+      </footer>
+
+  </div>
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
@@ -69,7 +98,7 @@
 
   <!-- Page level custom scripts -->
   <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
-
+  @yield('javascript_content')
 </body>
 
 </html>

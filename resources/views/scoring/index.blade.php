@@ -1,15 +1,59 @@
 @extends('layouts/public')
+@section('styles')
+<style>
+    .score-card {
+        background-color: #f8f9fc;
+        border: 1px solid #d1d3e2;
+        border-radius: 5px;
+        padding: 20px;
+
+    }
+
+    .score-value {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #4e73df;
+    }
+
+    .score-description {
+        color: #5a5c69;
+    }
+
+    /* Additional styling for the card */
+    .score-card .card-header {
+        background-color: #4e73df;
+        color: #fff;
+        border-bottom: none;
+        border-radius: 5px 5px 0 0;
+        padding: 15px;
+    }
+
+    .score-card .card-body {
+        padding-top: 0;
+    }
+
+    .score-card .card-body p {
+        margin-bottom: 0;
+    }
+
+    .score-icon {
+        font-size: 3rem;
+        margin-top: 10px;
+    }
+</style>
+@endsection
+
 
 @section('container')
 <div class="container">
         <div class="row">
             <div class="col-lg-6 mx-auto">
-                <div class="card mt-5">
+                <div class="card mt-5 score-card">
                     <div class="card-header">
                         <h3 class="text-center">Student Information Form</h3>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('survey') }}">
+                        <form name ="anas" method="post" action="{{ route('survey.form') }}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name:</label>
@@ -18,7 +62,7 @@
 
                             <div class="form-group">
                                 <label for="nim">NIM:</label>
-                                <input type="text" id="nim" name="nim" class="form-control" required>
+                                <input type="number" id="nim" name="nim" class="form-control" required>
                             </div>
 
                             <div class="form-group">
@@ -28,13 +72,12 @@
 
                             <div class="form-group">
                                 <label for="year">Year:</label>
-                                <input type="number" id="year" name="year" class="form-control" min="1" max="5" required>
+                                <input type="number" id="year" name="year" class="form-control" required>
                             </div>
-
-                            <div class="form-group text-center">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <div class="form-group text-right">
+                            <button type="submit" class="btn btn-primary">next</button>
                             </div>
-
+                            <input type="hidden" id="form_user" name="form_user" value="user">
                         </form>
                     </div>
                 </div>
