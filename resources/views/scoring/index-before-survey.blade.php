@@ -40,7 +40,7 @@
 
                                 @foreach ($sections[$i]->questions as $index => $question)
                                     <b>{{ $index + 1 }}. {{ $question->value }}</b>
-                                    <div style="display: flex; justify-content: center; margin-top: 10px;">
+                                    <div style="display: flex; justify-content: center; margin-top: 5px; margin-bottom: 15px;">
                                         @foreach ($options as $weight => $optionText)
                                             <label style="margin-right:60px">
                                                 <input type="radio"
@@ -52,22 +52,23 @@
                                         @endforeach
                                     </div>
                                 @endforeach
-                                <div class="button-container">
-                                    @if ($i > 0)
-                                        <button type="button" class="previous w-30 btn btn-md btn-primary mt-3"
-                                            data-section="{{ $i }}">Previous</button>
-                                    @endif
+                                <div class="d-flex justify-content-center">
+                                    <div class="button-container">
+                                        @if ($i > 0)
+                                            <button type="button" class="previous w-30 btn btn-md btn-primary mt-3"
+                                                data-section="{{ $i }}">Previous</button>
+                                        @endif
 
-                                    @if ($i < $sectionCount - 1)
-                                        <button type="button" class="next w-30 btn btn-md btn-primary mt-3"
-                                            data-section="{{ $i }}">Next</button>
-                                    @endif
+                                        @if ($i < $sectionCount - 1)
+                                            <button type="button" class="next w-30 btn btn-md btn-primary mt-3"
+                                                data-section="{{ $i }}">Next</button>
+                                        @endif
 
-                                    @if ($i == $sectionCount - 1)
-                                        <button class="w-30 btn btn-md btn-primary mt-3" type="submit">Submit</button>
-                                    @endif
+                                        @if ($i == $sectionCount - 1)
+                                            <button class="w-30 btn btn-md btn-primary mt-3" type="submit">Submit</button>
+                                        @endif
+                                    </div>
                                 </div>
-
                             </div>
                         @endfor
                     </form>
