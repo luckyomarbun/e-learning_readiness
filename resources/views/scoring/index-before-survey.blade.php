@@ -20,11 +20,11 @@
                         @php
                             $sectionCount = count($sections);
                             $options = [
-                                1 => 'Sangat Tidak Setuju',
-                                2 => 'Tidak Setuju',
-                                3 => 'Netral',
-                                4 => 'Setuju',
-                                5 => 'Sangat Setuju',
+                                1 => 'Strongly Disagree',
+                                2 => 'Disagree',
+                                3 => 'Neutral',
+                                4 => 'Agree',
+                                5 => 'Strongly Agree',
                             ];
                         @endphp
                         @for ($i = 0; $i < $sectionCount; $i++)
