@@ -130,6 +130,9 @@
                         <h6 class="m-0 font-weight-bold text-center">Description</h6>
                     </div>
                     <div class="card-body">
+                        @php
+                            $final_score = session('final_score');
+                        @endphp
                         @foreach (session('sections') as $section)
                             <div class="section-info">
                                 <div class="section-name">
@@ -137,6 +140,26 @@
                                 </div>
                                 <div class="colon"> : </div>
                                 <div class="section-score"> {{ $section['score'] }}</div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="card shadow mb-4 score-card">
+                    <div class="card-header">
+                        <h6 class="m-0 font-weight-bold text-center">Suggestion</h6>
+                    </div>
+                    <div class="card-body">
+                        @php
+                            $final_score = session('final_score');
+                        @endphp
+                        @foreach (session('sections') as $section)
+                            <div class="section-info">
+                                <div class="section-name">
+                                    <strong>{{ $section['name'] }}</strong>
+                                </div>
                             </div>
                             <div class="suggestion">
                                 @if ($section['name'] === 'Technological Skills' && $final_score < 4.2)
@@ -180,14 +203,20 @@
                                         </ul>
                                     </div>
                                 @else 
-                                    <div class="list-suggestion">Invalid</div>
+                                    <div class="list-suggestion">
+                                        <ul>
+                                            <li>Ready to Go</li>
+                                        </ul>
+                                    </div>
                                 @endif
                             </div>
-
+                        @endforeach
                     </div>
                 </div>
             </div>
             <div class="col-lg-1"></div>
+
+
             <!-- Back to Survey button -->
             <div class="row justify-content-center">
                 <div class="col-lg-5"></div>
