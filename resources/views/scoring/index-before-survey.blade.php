@@ -128,17 +128,17 @@
             function validateForm() {
                 // Example: Check if all questions are answered
                 var unansweredQuestions = $('input[type=radio]:not(:checked)').length;
-                // if (unansweredQuestions > 0) {
-                //     // alert('Please answer all question!');
-                //     // for (var key in errors) {
-                //     var errorMessage = '<strong>Error!</strong> ' + 'Please answer all question!' + '<br>';
-                //     // }
-                //     console.log('MASUK');
-                //     $('#error-container').html(errorMessage).show();
-                //     setTimeout(function() {
-                //         $('#error-container').hide();
-                //     }, 3000);
-                //     return false; // Prevent form submission
+                //  if (unansweredQuestions > 0) {
+                    // alert('Please answer all question!');
+                    // for (var key in errors) {
+                    // var errorMessage = '<strong>Error!</strong> ' + 'Please answer all question!' + '<br>';
+                    // }
+                    // console.log('MASUK');
+                    // $('#error-container').html(errorMessage).show();
+                    // setTimeout(function() {
+                    // $('#error-container').hide();
+                    // }, 3000);
+                    // return false; // Prevent form submission
                 // }
 
                 // Add more validation rules for other form fields as needed

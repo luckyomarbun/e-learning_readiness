@@ -19,6 +19,11 @@ class QuestionSeeder extends Seeder
 
         Question::truncate();
         Question::create([
+            'value' => 'I think the technological skills factor is important. ',
+            'section_id' => 1
+        ]);
+
+        Question::create([
             'value' => 'I know the basic functions of computer hardware (CPU and monitor) and its peripherals like the printer, speaker, keyboard, mouse, etc. ',
             'section_id' => 1
         ]);
@@ -91,6 +96,11 @@ class QuestionSeeder extends Seeder
         Question::create([
             'value' => 'I participate in online gaming networks.',
             'section_id' => 1
+        ]);
+
+        Question::create([
+            'value' => 'I think the study habits & skills factor is important. ',
+            'section_id' => 2
         ]);
 
         Question::create([
@@ -174,6 +184,11 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
+            'value' => 'I think the cognitive presence factor is important. ',
+            'section_id' => 3
+        ]);
+
+        Question::create([
             'value' => 'When participations in an online course I would feel motivated to explore content related questions.',
             'section_id' => 3
         ]);
@@ -234,6 +249,11 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
+            'value' => 'I think the teaching presence factor is important. ',
+            'section_id' => 4
+        ]);
+
+        Question::create([
             'value' => 'I believe the instructor should clearly communicate important course topics in an online course.',
             'section_id' => 4
         ]);
@@ -286,6 +306,11 @@ class QuestionSeeder extends Seeder
         Question::create([
             'value' => 'The instructor should provide feedback in timely fashion.',
             'section_id' => 4
+        ]);
+
+        Question::create([
+            'value' => 'I think the social presence factor is important. ',
+            'section_id' => 5
         ]);
 
         Question::create([
