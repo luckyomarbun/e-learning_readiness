@@ -49,6 +49,13 @@ class SurveyController extends Controller
 
     public function summary()
     {
+        if (session()->get('final_score') == null || session()->get('sections') == null) {
+
+            return redirect('/survey/');
+            // return redirect('/survey/summary');
+        }
+
+
         return view('scoring.index-after-survey', [
             'title' => 'Survey',
             'active' => 'Survey',
@@ -56,13 +63,12 @@ class SurveyController extends Controller
     }
     public function form(Request $request)
     {
-      
-
         if (Session::get('userData') != null && $request->form_user == null) {
             $user = User::where('email', Session::get('userData')['email'])->where('student_id_number', Session::get('userData')['student_id_number'])->first();
             if ($user != null && $user->survey_completed == 1) {
                 dd("SUDAH BERHASIL ISI SURVEY");
             } else {
+                return redirect('/survey/');
             }
         } else {
             $user = User::where('student_id_number', $request->input('nim'))->orWhere('email', $request->input('email'))->first();
