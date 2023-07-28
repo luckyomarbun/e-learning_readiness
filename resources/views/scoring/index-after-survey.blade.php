@@ -209,6 +209,7 @@
                                         </ul>
                                     </div>
                                 @endif --}}
+                                @endif
                             </div>
                         @endforeach
                     </div>
