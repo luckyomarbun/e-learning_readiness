@@ -162,7 +162,7 @@
                                 </div>
                             </div>
                             <div class="suggestion">
-                                @if ($section['name'] === 'Technological Skills' && $final_score < 4.2)
+                                @if ($section['name'] === 'Technological Skills' && $section['score'] < 4.2)
                                     <div class="list-suggestion">
                                         <ul>
                                             <li>Ikuti pelatihan teknologi sebelum memulai e-learning.</li>
@@ -170,7 +170,7 @@
                                             <li>Dapatkan dukungan teknologi melalui sesi tanya jawab.</li>
                                         </ul>
                                     </div>
-                                @elseif ($section['name'] === 'Study Habits & Skills' && $final_score < 4.2)
+                                @elseif ($section['name'] === 'Study Habits & Skills' && $section['score'] < 4.2)
                                     <div class="list-suggestion">
                                         <ul>
                                             <li>Atur manajemen waktu dengan membuat jadwal belajar yang efisien.</li>
@@ -178,7 +178,7 @@
                                             <li>Evaluasi kemajuan belajar secara mandiri untuk perbaikan.</li>
                                         </ul>
                                     </div>
-                                @elseif ($section['name'] === 'Cognitive Preseence' && $final_score < 4.2)
+                                @elseif ($section['name'] === 'Cognitive Preseence' && $section['score'] < 4.2)
                                     <div class="list-suggestion">
                                         <ul>
                                             <li>Gunakan tugas dan proyek kolaboratif yang mendorong pemikiran kritis.</li>
@@ -186,7 +186,7 @@
                                             <li>Berikan umpan balik konstruktif kepada siswa.</li>
                                         </ul>
                                     </div>                                
-                                @elseif ($section['name'] === 'Teaching Preseence' && $final_score < 4.2)
+                                @elseif ($section['name'] === 'Teaching Preseence' && $section['score'] < 4.2)
                                     <div class="list-suggestion">
                                         <ul>
                                             <li>Berikan panduan pembelajaran yang jelas dan terstruktur.</li>
@@ -194,7 +194,7 @@
                                             <li>Sediakan dukungan tambahan bagi siswa yang membutuhkan.</li>
                                         </ul>
                                     </div>  
-                                @elseif ($section['name'] === 'Social Preseence' && $final_score < 4.2)
+                                @elseif ($section['name'] === 'Social Preseence' && $section['score'] < 4.2)
                                     <div class="list-suggestion">
                                         <ul>
                                             <li>Fasilitasi interaksi sosial melalui forum diskusi dan proyek kelompok.</li>
@@ -202,13 +202,13 @@
                                             <li>Dorong berbagi ide dan pengalaman dalam diskusi online.</li>
                                         </ul>
                                     </div>
-                                @else 
+                                {{-- @else 
                                     <div class="list-suggestion">
                                         <ul>
                                             <li>Ready to Go</li>
                                         </ul>
                                     </div>
-                                @endif
+                                @endif --}}
                             </div>
                         @endforeach
                     </div>
