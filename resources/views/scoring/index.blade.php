@@ -61,18 +61,21 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="nim">NIM:</label>
-                                <input type="number" id="nim" name="nim" class="form-control" required>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" id="email" name="email" class="form-control" required>
+                                <input type="email" id="email" name="email" class="form-control" pattern=".+@telkomuniversity\.ac\.id$" required>
+                                <small class="form-text text-muted">Email must end with @telkomuniversity.ac.id</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="year">Year:</label>
-                                <input type="number" id="year" name="year" class="form-control" required>
+                                <input type="number" id="year" name="year" class="form-control" min="2001" required>
+                                <small class="form-text text-muted">Year of admission must be after 2000</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nim">NIM:</label>
+                                <input type="text" id="nim" name="nim" class="form-control" pattern="[0-9]{10}" required>
+                                <small class="form-text text-muted">NIM must consist of exactly 10 digits</small>
                             </div>
                             <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary">next</button>
