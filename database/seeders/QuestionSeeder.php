@@ -18,10 +18,6 @@ class QuestionSeeder extends Seeder
     {
 
         Question::truncate();
-        Question::create([
-            'value' => 'I think the technological skills factor is important. ',
-            'section_id' => 1
-        ]);
 
         Question::create([
             'value' => 'I know the basic functions of computer hardware (CPU and monitor) and its peripherals like the printer, speaker, keyboard, mouse, etc. ',
@@ -94,7 +90,17 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
+            'value' => 'I use/have used social networking (e.g. Facebook, Instagram, etc.). ',
+            'section_id' => 1
+        ]);
+
+        Question::create([
             'value' => 'I participate in online gaming networks.',
+            'section_id' => 1
+        ]);
+
+        Question::create([
+            'value' => 'I think the technological skills factor is important. ',
             'section_id' => 1
         ]);
 
@@ -184,6 +190,11 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
+            'value' => 'I think the Study Habits & Skills factor is important. ',
+            'section_id' => 2
+        ]);
+
+        Question::create([
             'value' => 'I think the cognitive presence factor is important. ',
             'section_id' => 3
         ]);
@@ -249,6 +260,11 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
+            'value' => 'I think the Cognitive Preseence factor is important. ',
+            'section_id' => 3
+        ]);
+      
+        Question::create([
             'value' => 'I think the teaching presence factor is important. ',
             'section_id' => 4
         ]);
@@ -309,6 +325,11 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
+            'value' => 'I think Teaching Preseence factor is important. ',
+            'section_id' => 4
+        ]);
+
+        Question::create([
             'value' => 'I think the social presence factor is important. ',
             'section_id' => 5
         ]);
@@ -362,5 +383,11 @@ class QuestionSeeder extends Seeder
             'value' => 'Online discussions would help me to develop a sense of collaboration.',
             'section_id' => 5
         ]);
+
+        Question::create([
+            'value' => 'I think Social Preseence factor is important. ',
+            'section_id' => 5
+        ]);
+        
     }
 }

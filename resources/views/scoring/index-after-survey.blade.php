@@ -1,6 +1,10 @@
 @extends('layouts/public')
 @section('styles')
+    <!-- Add any additional styles here if needed -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Custom styles specific to this page */
+        /* ... (your existing styles) ... */
 
         .card-header {
             text-align: center;
@@ -16,9 +20,10 @@
         }
 
         .score-value {
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: bold;
             color: #4e73df;
+            margin-bottom: 0.5rem;
         }
 
         .score-summary {
@@ -44,186 +49,208 @@
         }
 
         .score-icon {
-            font-size: 3rem;
-            margin-top: 10px;
+            font-size: 1.5rem;
+        margin-right: 8px;
         }
 
         .section-info {
             display: flex;
-            justify-content: flex-start;
-            align-items: center;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0.5rem;
         }
 
         .section-name {
-            flex: 0.5;
-            text-align: left;
-            margin-left: 20%;
+            flex: 1;
+        font-size: 1.2rem;
         }
 
         .colon {
-            flex: 0;
-            text-align: center;
-            width: 20px; /* Adjust the width of the colon as needed */
-        }
+        flex: 0;
+        font-size: 1.2rem;
+        margin: 0 8px;
+    }
 
-        .section-score {
-            flex: 0.5;
-            text-align: left;
-            margin-left: 20px; 
-        }
+    .section-score {
+        flex: 1;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #4e73df;
+    }
+
+    .suggestion {
+        text-align: left;
+    }
+
+    .suggestion ul {
+        list-style-type: none;
+        padding-left: 0;
+        text-align: left;
+    }
+
+    .suggestion li {
+        margin-bottom: 8px;
+    }
+
+    .suggestion li:before {
+        content: "\2022";
+        color: #4e73df;
+        font-weight: bold;
+        display: inline-block;
+        width: 1em;
+        position: absolute;
+        left: 0;
+    }
     </style>
 @endsection
+
 @section('container')
-    <div class="row" style="margin-top: 20px;">
+    <div class="container mt-4">
         <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-10">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h4 class="m-0 font-weight-bold text-primary">Thank you for completing E-Learning Readiness survey</h4>
+            <div class="col-lg-12">
+                <div class="card mb-4 shadow">
+                    <div class="card-header py-3 bg-primary text-white">
+                        <h4 class="m-0 font-weight-bold">Thank you for completing the E-Learning Readiness survey</h4>
                     </div>
                     <div class="card-body">
-                        <p class="text-justify"> This survey evaluates your readiness to engage in e-learning activities
-                            effectively and efficiently. Your responses to the survey will be used to identify areas where you
-                            may need additional support or resources to enhance your e-learning experience. Thank you for your
-                            participation!</p>
+                        <p class="text-justify">This survey evaluates your readiness to engage in e-learning activities
+                            effectively and efficiently. Your responses will help identify areas where you may need additional support or resources to enhance your e-learning experience. Thank you for your participation!</p>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-1"></div>
-    </div>
 
-    <div class="row">
         <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-5">
-                <div class="card shadow mb-4 score-card">
-                    <div class="card-header">
-                        <h6 class="m-0 font-weight-bold text-center">Your Score</h6>
-                    </div>
-                    <div class="card-body">
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="bi bi-bar-chart-fill" style="font-size: 1.5rem; margin-right: 8px;"></i>
+                        Your Score
+                    </h6>                    </div>
+                    <div class="card-body text-center">
                         <div class="score-value">{{ session('final_score') }}</div>
                         @php
-                        $final_score = session('final_score');
+                            $final_score = session('final_score');
                         @endphp
 
-                        @if ($final_score >= 1 && $final_score < 2.6)
-                            <div class="score-summary">Not ready needs a lot of work</div>
+                        @if ($final_score < 2.6)
+                            <div class="score-summary">Not ready - needs a lot of work</div>
                         @elseif ($final_score >= 2.6 && $final_score < 3.4)
-                            <div class="score-summary">Not ready needs some work</div>
+                            <div class="score-summary">Not ready - needs some work</div>
                         @elseif ($final_score >= 3.4 && $final_score < 4.2)
-                            <div class="score-summary">Ready but needs a few improvement</div>
+                            <div class="score-summary">Ready but needs some improvement</div>
                         @elseif ($final_score >= 4.2 && $final_score <= 5)
-                            <div class="score-summary">Ready go ahead</div>
-                        @else 
-                            <div class="score-summary">Invalid</div>
+                            <div class="score-summary">Ready - go ahead!</div>
                         @endif
-
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-5">
-                <div class="card shadow mb-4 score-card">
-                    <div class="card-header">
-                        <h6 class="m-0 font-weight-bold text-center">Description</h6>
+            <div class="col-lg-6 mb-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h6 class="m-0 font-weight-bold">
+                <i class="bi bi-file-text" style="font-size: 1.5rem; margin-right: 8px;"></i>
+                Description
+            </h6>
+        </div>
+        <div class="card-body text-center">
+            @php
+                $final_score = session('final_score');
+            @endphp
+            @foreach (session('sections') as $section)
+                <div class="section-info">
+                    <div class="section-icon">
+                        <!-- Add icons here (e.g., Bootstrap Icons) for each category -->
+                        @if ($section['name'] === 'Technological Skills')
+                            <i class="bi bi-gear"></i>
+                        @elseif ($section['name'] === 'Study Habits & Skills')
+                            <i class="bi bi-book"></i>
+                        @elseif ($section['name'] === 'Cognitive Preseence')
+                            <i class="bi bi-lightbulb"></i>
+                        @elseif ($section['name'] === 'Teaching Preseence')
+                            <i class="bi bi-person-check"></i>
+                        @elseif ($section['name'] === 'Social Preseence')
+                            <i class="bi bi-people"></i>
+                        @endif
                     </div>
-                    <div class="card-body">
-                        @php
-                            $final_score = session('final_score');
-                        @endphp
-                        @foreach (session('sections') as $section)
-                            <div class="section-info">
-                                <div class="section-name">
-                                    <strong>{{ $section['name'] }}</strong>
-                                </div>
-                                <div class="colon"> : </div>
-                                <div class="section-score"> {{ $section['score'] }}</div>
-                            </div>
-                        @endforeach
+                    <div class="section-name">
+                        <strong>{{ $section['name'] }}</strong>
+                    </div>
+                    <div class="colon">:</div>
+                    <div class="section-score">{{ $section['score'] }}</div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12 mb-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h6 class="m-0 font-weight-bold text-center">Suggestion</h6>
+        </div>
+        <div class="card-body text-center">
+            @php
+                $final_score = session('final_score');
+            @endphp
+            @foreach (session('sections') as $section)
+                <div class="section-info mb-3">
+                    <div class="section-name">
+                        <strong>{{ $section['name'] }}</strong>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-lg-5">
-                <div class="card shadow mb-4 score-card">
-                    <div class="card-header">
-                        <h6 class="m-0 font-weight-bold text-center">Suggestion</h6>
-                    </div>
-                    <div class="card-body">
-                        @php
-                            $final_score = session('final_score');
-                        @endphp
-                        @foreach (session('sections') as $section)
-                            <div class="section-info">
-                                <div class="section-name">
-                                    <strong>{{ $section['name'] }}</strong>
-                                </div>
-                            </div>
-                            <div class="suggestion">
-                                @if ($section['name'] === 'Technological Skills' && $final_score < 4.2)
-                                    <div class="list-suggestion">
-                                        <ul>
-                                            <li>Ikuti pelatihan teknologi sebelum memulai e-learning.</li>
-                                            <li>Gunakan panduan langkah-demi-langkah untuk menguasai platform pembelajaran.</li>
-                                            <li>Dapatkan dukungan teknologi melalui sesi tanya jawab.</li>
-                                        </ul>
-                                    </div>
-                                @elseif ($section['name'] === 'Study Habits & Skills' && $final_score < 4.2)
-                                    <div class="list-suggestion">
-                                        <ul>
-                                            <li>Atur manajemen waktu dengan membuat jadwal belajar yang efisien.</li>
-                                            <li>Gunakan metode belajar efektif seperti pembuatan catatan dan partisipasi aktif.</li>
-                                            <li>Evaluasi kemajuan belajar secara mandiri untuk perbaikan.</li>
-                                        </ul>
-                                    </div>
-                                @elseif ($section['name'] === 'Cognitive Preseence' && $final_score < 4.2)
-                                    <div class="list-suggestion">
-                                        <ul>
-                                            <li>Gunakan tugas dan proyek kolaboratif yang mendorong pemikiran kritis.</li>
-                                            <li>Fasilitasi diskusi online yang mendalam untuk meningkatkan pemahaman.</li>
-                                            <li>Berikan umpan balik konstruktif kepada siswa.</li>
-                                        </ul>
-                                    </div>                                
-                                @elseif ($section['name'] === 'Teaching Preseence' && $final_score < 4.2)
-                                    <div class="list-suggestion">
-                                        <ul>
-                                            <li>Berikan panduan pembelajaran yang jelas dan terstruktur.</li>
-                                            <li>Berikan umpan balik tepat waktu dan informatif.</li>
-                                            <li>Sediakan dukungan tambahan bagi siswa yang membutuhkan.</li>
-                                        </ul>
-                                    </div>  
-                                @elseif ($section['name'] === 'Social Preseence' && $final_score < 4.2)
-                                    <div class="list-suggestion">
-                                        <ul>
-                                            <li>Fasilitasi interaksi sosial melalui forum diskusi dan proyek kelompok.</li>
-                                            <li>Ciptakan lingkungan virtual yang ramah dan inklusif.</li>
-                                            <li>Dorong berbagi ide dan pengalaman dalam diskusi online.</li>
-                                        </ul>
-                                    </div>
-                                @else 
-                                    <div class="list-suggestion">
-                                        <ul>
-                                            <li>Ready to Go</li>
-                                        </ul>
-                                    </div>
-                                @endif
-                            </div>
-                        @endforeach
-                    </div>
+                <div class="suggestion">
+                    @if ($section['name'] === 'Technological Skills' && $final_score < 4.2)
+                        <ul class="text-center">
+                            <li>Take technology training before starting e-learning.</li>
+                            <li>Use step-by-step guides to master the learning platform.</li>
+                            <li>Get technical support through Q&A sessions.</li>
+                        </ul>
+                    @elseif ($section['name'] === 'Study Habits & Skills' && $final_score < 4.2)
+                        <ul class="text-center">
+                            <li>Manage your time by creating an efficient study schedule.</li>
+                            <li>Utilize effective learning methods, such as note-taking and active participation.</li>
+                            <li>Evaluate your learning progress independently for improvement.</li>
+                        </ul>
+                    @elseif ($section['name'] === 'Cognitive Presence' && $final_score < 4.2)
+                        <ul class="text-center">
+                            <li>Assign collaborative tasks and projects that encourage critical thinking.</li>
+                            <li>Facilitate in-depth online discussions to enhance understanding.</li>
+                            <li>Provide constructive feedback to students.</li>
+                        </ul>
+                    @elseif ($section['name'] === 'Teaching Presence' && $final_score < 4.2)
+                        <ul class="text-center">
+                            <li>Provide clear and structured learning guidance.</li>
+                            <li>Offer timely and informative feedback.</li>
+                            <li>Provide additional support to students in need.</li>
+                        </ul>
+                    @elseif ($section['name'] === 'Social Presence' && $final_score < 4.2)
+                        <ul class="text-center">
+                            <li>Facilitate social interaction through discussion forums and group projects.</li>
+                            <li>Create a friendly and inclusive virtual environment.</li>
+                            <li>Encourage sharing of ideas and experiences in online discussions.</li>
+                        </ul>
+                    @else
+                        <ul class="text-center">
+                            Ready to Go
+                        </ul>
+                    @endif
                 </div>
-            </div>
-            <div class="col-lg-1"></div>
+            @endforeach
+        </div>
+    </div>
+</div>
 
+            
+        </div>
 
-            <!-- Back to Survey button -->
-            <div class="row justify-content-center">
-                <div class="col-lg-5"></div>
-                <div class="col-lg-2 d-flex justify-content-center">
-                    <a href="{{ route('survey') }}" class="btn btn-primary">Go Back</a>
-                </div>
-                <div class="col-lg-5"></div>
+        <!-- Back to Survey button -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-2 text-center">
+                <a href="{{ route('survey') }}" class="btn btn-primary">Go Back</a>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection
