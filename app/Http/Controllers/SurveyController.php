@@ -194,7 +194,7 @@ class SurveyController extends Controller
             // $userAuth['survey_clicked'] = 1;
             // Session::put('userData', $userAuth);
             $userAuth->update(['survey_completed' => 1, 'survey_taken_date' => now(), 'final_score' => ($final_score), 'survey_clicked' => 1]);
-            Session::forget('userData');
+            // Session::forget('userData');
             // return redirect()
             //     ->route('index-after-survey')
             //     ->with('success', 'Answers Has Been Submited Successfully');
