@@ -63,7 +63,7 @@ class SurveyController extends Controller
     }
     public function form(Request $request)
     {
-        
+
         if (Session::get('userData') != null && $request->form_user == null) {
             $user = User::where('email', Session::get('userData')['email'])->where('student_id_number', Session::get('userData')['student_id_number'])->first();
             if ($user != null && $user->survey_completed == 1) {
@@ -193,7 +193,7 @@ class SurveyController extends Controller
             // $userAuth['final_score'] = ($final_score / $totalSection);
             // $userAuth['survey_clicked'] = 1;
             // Session::put('userData', $userAuth);
-            $userAuth->update(['survey_completed' => 1, 'survey_taken_date' => now(), 'final_score' => ($final_score / $totalSection), 'survey_clicked' => 1]);
+            $userAuth->update(['survey_completed' => 1, 'survey_taken_date' => now(), 'final_score' => ($final_score), 'survey_clicked' => 1]);
             Session::forget('userData');
             // return redirect()
             //     ->route('index-after-survey')
