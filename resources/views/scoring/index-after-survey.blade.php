@@ -88,19 +88,13 @@
         text-align: left;
     }
 
-    .suggestion li {
+    .suggestion ul li {
         margin-bottom: 8px;
+        list-style-type: none;
+
     }
 
-    .suggestion li:before {
-        content: "\2022";
-        color: #4e73df;
-        font-weight: bold;
-        display: inline-block;
-        width: 1em;
-        position: absolute;
-        left: 0;
-    }
+
     </style>
 @endsection
 
@@ -151,7 +145,7 @@
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
             <h6 class="m-0 font-weight-bold">
-                <i class="bi bi-file-text" style="font-size: 1.5rem; margin-right: 8px;"></i>
+            <i class="bi bi-file-text" style="font-size: 1.5rem; margin-right: 8px;"></i>
                 Description
             </h6>
         </div>
@@ -189,7 +183,9 @@
 <div class="col-lg-12 mb-4">
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
-            <h6 class="m-0 font-weight-bold text-center">Suggestion</h6>
+            
+            <h6 class="m-0 font-weight-bold text-center">            <i class="bi bi-check-square" style="font-size: 1.5rem; margin-right: 8px;"></i>
+Suggestion</h6>
         </div>
         <div class="card-body text-center">
             @php
