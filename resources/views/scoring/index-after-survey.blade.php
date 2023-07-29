@@ -79,19 +79,14 @@
     }
 
     .suggestion {
-        text-align: left;
+        display: flex;
     }
 
     .suggestion ul {
-        list-style-type: none;
-        padding-left: 0;
-        text-align: left;
     }
 
     .suggestion ul li {
         margin-bottom: 8px;
-        list-style-type: none;
-        margin-left: 20px; /* Adjust this value as needed to increase/decrease indentation */
     }
     
     </style>
@@ -183,60 +178,59 @@
 </div>
 
 
-
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-lg-12 mb-4">
             <div class="card shadow">
-                <div class="card-header bg-primary text-white">
+                <div class="card-header bg-primary text-white" style="margin-bottom: 20px">
                     <h6 class="m-0 font-weight-bold">
                         <i class="bi bi-check-square" style="font-size: 1.5rem; margin-right: 8px;"></i>
                         Suggestion
                     </h6>
                 </div>
-                <div class="card-body text-center">
+                <div class="card-body text-center" style="padding: 0 35%">
                     @foreach (session('sections') as $section)
                         <div class="section-info mb-3">
                             <div class="section-name">
                                 <strong>{{ $section['name'] }}</strong>
                             </div>
                         </div>
-                        <div class="suggestion d-flex justify-content-center"> <!-- Added class "d-flex justify-content-center" -->
+                        <div class="suggestion text-center py-3"> <!-- Add class "text-center" and "py-3" for vertical padding -->
                             @if ($section['name'] === 'Technological Skills' && $section['score'] < 0.84)
-                                <div>
-                                    <ul class="text-left">
+                                <div class="text-left">
+                                    <ul>
                                         <li>Take technology training before starting e-learning.</li>
                                         <li>Use step-by-step guides to master the learning platform.</li>
                                         <li>Get technical support through Q&A sessions.</li>
                                     </ul>
                                 </div>
                             @elseif ($section['name'] === 'Study Habits & Skills' && $section['score'] < 0.84)
-                                <div>
-                                    <ul class="text-left">
+                                <div class="text-left">
+                                    <ul >
                                         <li>Manage your time by creating an efficient study schedule.</li>
                                         <li>Utilize effective learning methods, such as note-taking and active participation.</li>
                                         <li>Evaluate your learning progress independently for improvement.</li>
                                     </ul>
                                 </div>
                             @elseif ($section['name'] === 'Cognitive Preseence' && $section['score'] < 0.84)
-                                <div>
-                                    <ul class="text-left">
+                                <div class="text-left">
+                                    <ul >
                                         <li>Assign collaborative tasks and projects that encourage critical thinking.</li>
                                         <li>Facilitate in-depth online discussions to enhance understanding.</li>
                                         <li>Provide constructive feedback to students.</li>
                                     </ul>
                                 </div>
                             @elseif ($section['name'] === 'Teaching Preseence' && $section['score'] < 0.84)
-                                <div>
-                                    <ul class="text-left">
+                                <div class="text-left">
+                                    <ul >
                                         <li>Provide clear and structured learning guidance.</li>
                                         <li>Offer timely and informative feedback.</li>
                                         <li>Provide additional support to students in need.</li>
                                     </ul>
                                 </div>
                             @elseif ($section['name'] === 'Social Preseence' && $section['score'] < 0.84)
-                                <div>
-                                    <ul class="text-left">
+                                <div class="text-left">
+                                    <ul >
                                         <li>Facilitate social interaction through discussion forums and group projects.</li>
                                         <li>Create a friendly and inclusive virtual environment.</li>
                                         <li>Encourage sharing of ideas and experiences in online discussions.</li>
@@ -252,6 +246,7 @@
         </div>
     </div>
 </div>
+
 
 
             
