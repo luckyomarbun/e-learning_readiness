@@ -1,4 +1,4 @@
-@extends('layouts/private')
+<!-- @extends('layouts/private')
 
 @section('container')
 <div class="row justify-content-center">
@@ -44,4 +44,4 @@
 </div>
 </div>
 </div>
-@endsection
+@endsection -->

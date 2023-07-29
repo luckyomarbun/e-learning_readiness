@@ -3,76 +3,78 @@
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h3 class="m-0 font-weight-bold text-primary head-title text-center">{{ $sections[0]->value }}</h3>
-                    <label class="text-justify head-description">{{ $sections[0]->description }}</label>
+            <div class="card-header py-3 text-center">
+    <h3 class="m-0 font-weight-bold text-primary head-title">{{ $sections[0]->value }}</h3>
+    <label class="text-justify head-description">{{ $sections[0]->description }}</label>
+</div>
+<div class="card-body">
+    {{-- @if ($errors->any()) --}}
+        <div id="error-container" class="alert alert-danger alert-dismissible" role="alert" style="display: none;">
+            <button id="close-error" type="button" class="close" data-dismiss="alert">
+                <i class="fa fa-times"></i>
+            </button>
+        </div>
+    {{-- @endif --}}
+    <form id="surveyForm" action="{{ route('survey.submit') }}" method="POST">
+        @csrf
+        @php
+            $sectionCount = count($sections);
+            $options = [
+                1 => 'Strongly Disagree',
+                2 => 'Disagree',
+                3 => 'Neutral',
+                4 => 'Agree',
+                5 => 'Strongly Agree',
+            ];
+        @endphp
+        @for ($i = 0; $i < $sectionCount; $i++)
+            <div class="section text-center" id="section{{ $i }}" style="display: {{ $i === 0 ? 'block' : 'none' }}">
+                <template id="templateContentTitle">
+                    <h2 class="content-title">{{ $sections[$i]->value }}</h2>
+                    <label class="content-description">{{ $sections[$i]->description }}</label>
+                </template>
+                @php
+                    $questionNumber = 1;
+                @endphp
+
+                @foreach ($sections[$i]->questions as $index => $question)
+                    <div>
+                        <b>{{ $question->value }}</b>
+                    </div>
+                    <div style="display: flex; justify-content: center; margin-top: 5px; margin-bottom: 15px;">
+                        @foreach ($options as $weight => $optionText)
+                            <label style="margin-right: 40px;">
+                                <input type="radio"
+                                    name="answers[{{ $sections[$i]->id }}][{{ $question->id }}]"
+                                    value="{{ $weight }}"
+                                    required
+                                    {{ old("answers.{$sections[$i]->id}.{$question->id}") == $weight ? 'checked' : '' }}>
+                                {{ $optionText }}
+                            </label>
+                        @endforeach
+                    </div>
+                @endforeach
+                <div class="d-flex justify-content-center">
+                    <div class="button-container">
+                        @if ($i > 0)
+                            <button type="button" class="previous w-30 btn btn-md btn-primary mt-3"
+                                data-section="{{ $i }}">Previous</button>
+                        @endif
+
+                        @if ($i < $sectionCount - 1)
+                            <button type="button" class="next w-30 btn btn-md btn-primary mt-3"
+                                data-section="{{ $i }}">Next</button>
+                        @endif
+
+                        @if ($i == $sectionCount - 1)
+                            <button class="w-30 btn btn-md btn-primary mt-3" type="submit">Submit</button>
+                        @endif
+                    </div>
                 </div>
-                <div class="card-body">
-                    {{-- @if ($errors->any()) --}}
-                        <div id="error-container" class="alert alert-danger alert-dismissible" role="alert" style="display: none;" >
-                            <button id="close-error" type="button" class="close" data-dismiss="alert">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                    {{-- @endif --}}
-                    <form id="surveyForm" action="{{ route('survey.submit') }}" method="POST">
-                        @csrf
-                        @php
-                            $sectionCount = count($sections);
-                            $options = [
-                                1 => 'Strongly Disagree',
-                                2 => 'Disagree',
-                                3 => 'Neutral',
-                                4 => 'Agree',
-                                5 => 'Strongly Agree',
-                            ];
-                        @endphp
-                        @for ($i = 0; $i < $sectionCount; $i++)
-                            <div class="section" id="section{{ $i }}"
-                                style="display: {{ $i === 0 ? 'block' : 'none' }}">
-                                <template id="templateContentTitle">
-                                    <h2 class="text-center content-title">{{ $sections[$i]->value }}</h2>
-                                    <label class="text-justify content-description">{{ $sections[$i]->description }}</label>
-                                </template>
-                                @php
-                                    $questionNumber = 1;
-                                @endphp
-
-                                @foreach ($sections[$i]->questions as $index => $question)
-                                    <b>{{ $index + 1 }}. {{ $question->value }}</b>
-                                    <div style="display: flex; justify-content: center; margin-top: 5px; margin-bottom: 15px;">
-                                        @foreach ($options as $weight => $optionText)
-                                            <label style="margin-right:60px">
-                                                <input type="radio"
-                                                    name="answers[{{ $sections[$i]->id }}][{{ $question->id }}]"
-                                                    value="{{ $weight }}"
-                                                    {{ old("answers.{$sections[$i]->id}.{$question->id}") == $weight ? 'checked' : '' }}>
-                                                {{ $optionText }}
-                                            </label>
-                                        @endforeach
-                                    </div>
-                                @endforeach
-                                <div class="d-flex justify-content-center">
-                                    <div class="button-container">
-                                        @if ($i > 0)
-                                            <button type="button" class="previous w-30 btn btn-md btn-primary mt-3"
-                                                data-section="{{ $i }}">Previous</button>
-                                        @endif
-
-                                        @if ($i < $sectionCount - 1)
-                                            <button type="button" class="next w-30 btn btn-md btn-primary mt-3"
-                                                data-section="{{ $i }}">Next</button>
-                                        @endif
-
-                                        @if ($i == $sectionCount - 1)
-                                            <button class="w-30 btn btn-md btn-primary mt-3" type="submit">Submit</button>
-                                        @endif
-                                    </div>
-                                </div>
-                            </div>
-                        @endfor
-                    </form>
-                </div>
+            </div>
+        @endfor
+    </form>
+</div>
             </div>
         </div>
     </div>

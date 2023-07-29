@@ -91,7 +91,7 @@
     .suggestion ul li {
         margin-bottom: 8px;
         list-style-type: none;
-
+        margin-left: 20px; /* Adjust this value as needed to increase/decrease indentation */
     }
     
     </style>
@@ -122,7 +122,7 @@
                         Your Score
                     </h6>                    </div>
                     <div class="card-body text-center">
-                        <div class="score-value">{{ session('final_score') }}</div>
+                        <div class="score-value">{{ number_format(session('final_score'), 2) }}</div>
                         @php
                             $final_score = session('final_score');
                         @endphp
@@ -144,7 +144,7 @@
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
             <h6 class="m-0 font-weight-bold">
-            <i class="bi bi-file-text" style="font-size: 1.5rem; margin-right: 8px;"></i>
+                <i class="bi bi-file-text" style="font-size: 1.5rem; margin-right: 8px;"></i>
                 Description
             </h6>
         </div>
@@ -153,90 +153,106 @@
                 $final_score = session('final_score');
             @endphp
             @foreach (session('sections') as $section)
-                <div class="section-info">
-                    <div class="section-icon">
-                        <!-- Add icons here (e.g., Bootstrap Icons) for each category -->
-                        @if ($section['name'] === 'Technological Skills')
-                            <i class="bi bi-gear"></i>
-                        @elseif ($section['name'] === 'Study Habits & Skills')
-                            <i class="bi bi-book"></i>
-                        @elseif ($section['name'] === 'Cognitive Preseence')
-                            <i class="bi bi-lightbulb"></i>
-                        @elseif ($section['name'] === 'Teaching Preseence')
-                            <i class="bi bi-person-check"></i>
-                        @elseif ($section['name'] === 'Social Preseence')
-                            <i class="bi bi-people"></i>
-                        @endif
-                    </div>
-                    <div class="section-name">
-                        <strong>{{ $section['name'] }}</strong>
-                    </div>
-                    <div class="colon">:</div>
-                    <div class="section-score">{{ $section['score'] }}</div>
-                </div>
+            <div class="section-info" style="display: flex; align-items: center; margin-bottom: 0.5rem;">
+    <div class="section-icon" style="margin-right: 10px;">
+        <!-- Add icons here (e.g., Bootstrap Icons) for each category -->
+        @if ($section['name'] === 'Technological Skills')
+            <i class="bi bi-gear"></i>
+        @elseif ($section['name'] === 'Study Habits & Skills')
+            <i class="bi bi-book"></i>
+        @elseif ($section['name'] === 'Cognitive Preseence')
+            <i class="bi bi-lightbulb"></i>
+        @elseif ($section['name'] === 'Teaching Preseence')
+            <i class="bi bi-person-check"></i>
+        @elseif ($section['name'] === 'Social Preseence')
+            <i class="bi bi-people"></i>
+        @endif
+    </div>
+    <div class="section-name text-left" style="flex: 1; margin: 0 5rem;">
+        <strong>{{ $section['name'] }}</strong>
+    </div>
+    <div class="colon" style="flex: 0; font-size: 1.2rem; margin: 0 8px;">:</div>
+    <div class="section-score" style="flex: 1; font-size: 1.2rem; font-weight: bold; color: #4e73df;">
+        {{ number_format($section['score'], 2) }}
+    </div>
+</div>
+
             @endforeach
         </div>
     </div>
 </div>
 
-<div class="col-lg-12 mb-4">
-    <div class="card shadow">
-        <div class="card-header bg-primary text-white">
-            
-            <h6 class="m-0 font-weight-bold text-center">            <i class="bi bi-check-square" style="font-size: 1.5rem; margin-right: 8px;"></i>
-Suggestion</h6>
-        </div>
-        <div class="card-body text-center">
-            @php
-                $final_score = session('final_score');
-            @endphp
-            @foreach (session('sections') as $section)
-                <div class="section-info mb-3">
-                    <div class="section-name">
-                        <strong>{{ $section['name'] }}</strong>
-                    </div>
+
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-12 mb-4">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h6 class="m-0 font-weight-bold">
+                        <i class="bi bi-check-square" style="font-size: 1.5rem; margin-right: 8px;"></i>
+                        Suggestion
+                    </h6>
                 </div>
-                <div class="suggestion">
-                    @if ($section['name'] === 'Technological Skills' && $final_score < 4.2)
-                        <ul class="text-center">
-                            <li>Take technology training before starting e-learning.</li>
-                            <li>Use step-by-step guides to master the learning platform.</li>
-                            <li>Get technical support through Q&A sessions.</li>
-                        </ul>
-                    @elseif ($section['name'] === 'Study Habits & Skills' && $final_score < 4.2)
-                        <ul class="text-center">
-                            <li>Manage your time by creating an efficient study schedule.</li>
-                            <li>Utilize effective learning methods, such as note-taking and active participation.</li>
-                            <li>Evaluate your learning progress independently for improvement.</li>
-                        </ul>
-                    @elseif ($section['name'] === 'Cognitive Presence' && $final_score < 4.2)
-                        <ul class="text-center">
-                            <li>Assign collaborative tasks and projects that encourage critical thinking.</li>
-                            <li>Facilitate in-depth online discussions to enhance understanding.</li>
-                            <li>Provide constructive feedback to students.</li>
-                        </ul>
-                    @elseif ($section['name'] === 'Teaching Presence' && $final_score < 4.2)
-                        <ul class="text-center">
-                            <li>Provide clear and structured learning guidance.</li>
-                            <li>Offer timely and informative feedback.</li>
-                            <li>Provide additional support to students in need.</li>
-                        </ul>
-                    @elseif ($section['name'] === 'Social Presence' && $final_score < 4.2)
-                        <ul class="text-center">
-                            <li>Facilitate social interaction through discussion forums and group projects.</li>
-                            <li>Create a friendly and inclusive virtual environment.</li>
-                            <li>Encourage sharing of ideas and experiences in online discussions.</li>
-                        </ul>
-                    @else
-                        <ul class="text-center">
-                            Ready to Go
-                        </ul>
-                    @endif
+                <div class="card-body text-center">
+                    @foreach (session('sections') as $section)
+                        <div class="section-info mb-3">
+                            <div class="section-name">
+                                <strong>{{ $section['name'] }}</strong>
+                            </div>
+                        </div>
+                        <div class="suggestion d-flex justify-content-center"> <!-- Added class "d-flex justify-content-center" -->
+                            @if ($section['name'] === 'Technological Skills' && $section['score'] < 0.84)
+                                <div>
+                                    <ul class="text-left">
+                                        <li>Take technology training before starting e-learning.</li>
+                                        <li>Use step-by-step guides to master the learning platform.</li>
+                                        <li>Get technical support through Q&A sessions.</li>
+                                    </ul>
+                                </div>
+                            @elseif ($section['name'] === 'Study Habits & Skills' && $section['score'] < 0.84)
+                                <div>
+                                    <ul class="text-left">
+                                        <li>Manage your time by creating an efficient study schedule.</li>
+                                        <li>Utilize effective learning methods, such as note-taking and active participation.</li>
+                                        <li>Evaluate your learning progress independently for improvement.</li>
+                                    </ul>
+                                </div>
+                            @elseif ($section['name'] === 'Cognitive Preseence' && $section['score'] < 0.84)
+                                <div>
+                                    <ul class="text-left">
+                                        <li>Assign collaborative tasks and projects that encourage critical thinking.</li>
+                                        <li>Facilitate in-depth online discussions to enhance understanding.</li>
+                                        <li>Provide constructive feedback to students.</li>
+                                    </ul>
+                                </div>
+                            @elseif ($section['name'] === 'Teaching Preseence' && $section['score'] < 0.84)
+                                <div>
+                                    <ul class="text-left">
+                                        <li>Provide clear and structured learning guidance.</li>
+                                        <li>Offer timely and informative feedback.</li>
+                                        <li>Provide additional support to students in need.</li>
+                                    </ul>
+                                </div>
+                            @elseif ($section['name'] === 'Social Preseence' && $section['score'] < 0.84)
+                                <div>
+                                    <ul class="text-left">
+                                        <li>Facilitate social interaction through discussion forums and group projects.</li>
+                                        <li>Create a friendly and inclusive virtual environment.</li>
+                                        <li>Encourage sharing of ideas and experiences in online discussions.</li>
+                                    </ul>
+                                </div>
+                            @else
+                                <p>Ready to Go</p>
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
+            </div>
         </div>
     </div>
 </div>
+
 
             
         </div>

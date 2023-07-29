@@ -1,4 +1,4 @@
-@extends('layouts/private')
+<!-- @extends('layouts/private')
 
 @section('container')
 <div class="row justify-content-center">
@@ -120,4 +120,4 @@
         document.getElementById('error-container').style.display = 'none';
     });
 </script>
-@endsection
+@endsection -->
