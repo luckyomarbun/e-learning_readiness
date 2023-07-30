@@ -29,8 +29,7 @@ class SurveyController extends Controller
     {
         if (session()->get('final_score') == null || session()->get('sections') == null) {
 
-            return redirect('/survey/');
-            // return redirect('/survey/summary');
+            return redirect('/');
         }
 
 
@@ -180,7 +179,7 @@ class SurveyController extends Controller
             Session::put('sections', $sections);
             return redirect('/survey/summary');
         } else {
-            return view('scoring.index', [
+            return view('scoring.home', [
                 'title' => 'Scoring',
                 'active' => 'Scoring'
             ]);
