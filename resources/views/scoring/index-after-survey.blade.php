@@ -79,26 +79,6 @@
         margin: 0 8px;
     }
 
-<<<<<<< HEAD
-    .section-score {
-        flex: 1;
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: #4e73df;
-    }
-
-    .suggestion {
-        display: flex;
-    }
-
-    .suggestion ul {
-    }
-
-    .suggestion ul li {
-        margin-bottom: 8px;
-    }
-    
-=======
         .section-score {
             flex: 0.5;
             text-align: left;
@@ -109,7 +89,6 @@
         text-align: left;
         }
 
->>>>>>> b64b1255f17d6b33fb80edcd961c83b0733a8717
     </style>
 @endsection
 

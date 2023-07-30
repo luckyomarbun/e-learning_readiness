@@ -30,6 +30,21 @@ use App\Models\Question;
 */
 
 Route::get('/', function () {
+    // return view('home', [
+    //     "title" => "E-Learning Readiness",
+    //     "active" => 'scholarship acceptance'
+    // ]);
+    return view('scoring.home', [
+        "title" => "E-Learning Readiness",
+        "active" => 'scholarship acceptance'
+    ]);
+});
+
+Route::get('/admin', function () {
+    // return view('home', [
+    //     "title" => "E-Learning Readiness",
+    //     "active" => 'scholarship acceptance'
+    // ]);
     return view('home', [
         "title" => "E-Learning Readiness",
         "active" => 'scholarship acceptance'

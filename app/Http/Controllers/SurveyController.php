@@ -16,28 +16,6 @@ class SurveyController extends Controller
 
     public function survey(Request $request)
     {
-        // if ($request->isMethod('POST')) {
-        //     dd('Haiii');
-        //     $user = User::where('student_id_number',$request->nim)->where('email',Str::upper($request->email))->get();
-        //     if($user->isEmpty()){
-        //         $sections = Section::get();
-        //         foreach ($sections as $section) {
-        //             $section->questions = Question::where('section_id', $section->id)->get();
-        //         }
-        //         return view('scoring.index-before-survey', [
-        //             'title' => 'Survey',
-        //             'active' => 'Survey',
-        //             'sections' => $sections
-        //         ]);
-        //     } else  {
-        //         if($user->survey_completed == 1){
-        //             return view('scoring.index', [
-        //                 'title' => 'Scoring',
-        //                 'active' => 'Scoring'
-        //             ]);
-        //         }
-        //     }
-        // }
         session()->forget('final_score');
         session()->forget('sections');
 
@@ -80,12 +58,6 @@ class SurveyController extends Controller
                     $score = Score::select('score')->where('student_id_number', $user->student_id_number)->where('section_id', $s->id)->first();
                     array_push($sections, ['name' => $s->value, 'score' => $score->score ?? 0]);
                 }
-                // return view('scoring.index-after-survey', [
-                //     'title' => 'Summary',
-                //     'active' => 'Summary',
-                //     'final_score' => $user->final_score,
-                //     'sections' =>  $sections
-                // ]);
                 Session::put('final_score', $user->final_score);
                 Session::put('sections', $sections);
                 return redirect('/survey/summary');
