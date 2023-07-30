@@ -19,14 +19,6 @@
             height: 210px;
         }
 
-        .suggestion-card {
-            background-color: #f8f9fc;
-            border: 1px solid #d1d3e2;
-            border-radius: 5px;
-            padding: 20px;
-            text-align: center;
-        }
-
         .score-value {
             font-size: 2.5rem;
             font-weight: bold;
@@ -79,15 +71,23 @@
         margin: 0 8px;
     }
 
-        .section-score {
-            flex: 0.5;
-            text-align: left;
-            margin-left: 20px; 
-        }
+    .section-score {
+        flex: 1;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #4e73df;
+    }
 
-        .list-suggestion ul {
-        text-align: left;
-        }
+    .suggestion {
+        display: flex;
+    }
+
+    .suggestion ul {
+    }
+
+    .suggestion ul li {
+        margin-bottom: 8px;
+    }
 
     </style>
 @endsection
@@ -204,7 +204,6 @@
                                         <li>Get technical support through Q&A sessions.</li>
                                     </ul>
                                 </div>
-<<<<<<< HEAD
                             @elseif ($section['name'] === 'Study Habits & Skills' && $section['score'] < 0.84)
                                 <div class="text-left">
                                     <ul >
@@ -244,107 +243,13 @@
                     @endforeach
                 </div>
             </div>
-=======
-                                <div class="colon"> : </div>
-                                <div class="section-score"> {{ $section['score'] }}</div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-8">
-                        <div class="card shadow mb-4 suggestion-card">
-                            <div class="card-header">
-                                <h6 class="m-0 font-weight-bold text-center">Suggestion</h6>
-                            </div>
-                            <div class="card-body">
-                                @php
-                                    $final_score = session('final_score');
-                                @endphp
-                                @foreach (session('sections') as $section)
-                                    <div class="section-info">
-                                        <div class="section-name">
-                                            <strong>{{ $section['name'] }}</strong>
-                                        </div>
-                                    </div>
-                                    <div class="suggestion">
-                                        @if ($section['name'] === 'Technological Skills' && $section['score'] < 4.2)
-                                            <div class="list-suggestion">
-                                                <ul>
-                                                    <li>Ikuti pelatihan teknologi sebelum memulai e-learning.</li>
-                                                    <li>Gunakan panduan langkah-demi-langkah untuk menguasai platform pembelajaran.</li>
-                                                    <li>Dapatkan dukungan teknologi melalui sesi tanya jawab.</li>
-                                                </ul>
-                                            </div>
-                                        @elseif ($section['name'] === 'Study Habits & Skills' && $section['score'] < 4.2)
-                                            <div class="list-suggestion">
-                                                <ul>
-                                                    <li>Atur manajemen waktu dengan membuat jadwal belajar yang efisien.</li>
-                                                    <li>Gunakan metode belajar efektif seperti pembuatan catatan dan partisipasi aktif.</li>
-                                                    <li>Evaluasi kemajuan belajar secara mandiri untuk perbaikan.</li>
-                                                </ul>
-                                            </div>
-                                        @elseif ($section['name'] === 'Cognitive Preseence' && $section['score'] < 4.2)
-                                            <div class="list-suggestion">
-                                                <ul>
-                                                    <li>Gunakan tugas dan proyek kolaboratif yang mendorong pemikiran kritis.</li>
-                                                    <li>Fasilitasi diskusi online yang mendalam untuk meningkatkan pemahaman.</li>
-                                                    <li>Berikan umpan balik konstruktif kepada siswa.</li>
-                                                </ul>
-                                            </div>                                
-                                        @elseif ($section['name'] === 'Teaching Preseence' && $section['score'] < 4.2)
-                                            <div class="list-suggestion">
-                                                <ul>
-                                                    <li>Berikan panduan pembelajaran yang jelas dan terstruktur.</li>
-                                                    <li>Berikan umpan balik tepat waktu dan informatif.</li>
-                                                    <li>Sediakan dukungan tambahan bagi siswa yang membutuhkan.</li>
-                                                </ul>
-                                            </div>  
-                                        @elseif ($section['name'] === 'Social Preseence' && $section['score'] < 4.2)
-                                            <div class="list-suggestion">
-                                                <ul>
-                                                    <li>Fasilitasi interaksi sosial melalui forum diskusi dan proyek kelompok.</li>
-                                                    <li>Ciptakan lingkungan virtual yang ramah dan inklusif.</li>
-                                                    <li>Dorong berbagi ide dan pengalaman dalam diskusi online.</li>
-                                                </ul>
-                                            </div>
-                                        {{-- @else 
-                                            <div class="list-suggestion">
-                                                <ul>
-                                                    <li>Ready to Go</li>
-                                                </ul>
-                                            </div> --}}
-                                        @endif 
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-2"></div>
-                </div>
-            </div>
-            
-
-            <!-- Back to Survey button -->
-            <div class="row justify-content-center">
-                <div class="col-lg-5"></div>
-                <div class="col-lg-2 d-flex justify-content-center">
-                    <a href="{{ route('survey') }}" class="btn btn-primary">Go Back</a>
-                </div>
-                <div class="col-lg-5"></div>
-            </div>
->>>>>>> b64b1255f17d6b33fb80edcd961c83b0733a8717
         </div>
     </div>
 </div>
 
 
 
-            
+
         </div>
 
         <!-- Back to Survey button -->

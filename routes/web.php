@@ -88,7 +88,7 @@ Route::match(['get', 'post'], '/survey', [SurveyController::class, 'survey'])->n
 // Route::post('/survey/start', [SurveyController::class, 'start'])->name('survey.start');
 Route::match(['get', 'post'],'/survey/form', [SurveyController::class, 'form'])->name('survey.form');
 Route::post('/survey/submit', [SurveyController::class, 'submit'])->name('survey.submit');
-Route::get('/survey/summary', [SurveyController::class, 'summary']);
+Route::get('/survey/summary', [SurveyController::class, 'summary'])->name('survey.summary');
 // Route::get('/survey', [SurveyController::class, 'survey'])->name('survey')->middleware('guest');
 // Route::post('/survey', [SurveyController::class, 'store'])->name('survey.store');
 
