@@ -105,11 +105,6 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
-            'value' => 'I think the study habits & skills factor is important. ',
-            'section_id' => 2
-        ]);
-
-        Question::create([
             'value' => 'When I have an important assignment, I get it done ahead of time.',
             'section_id' => 2
         ]);
@@ -195,11 +190,6 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
-            'value' => 'I think the cognitive presence factor is important. ',
-            'section_id' => 3
-        ]);
-
-        Question::create([
             'value' => 'When participations in an online course I would feel motivated to explore content related questions.',
             'section_id' => 3
         ]);
@@ -265,11 +255,6 @@ class QuestionSeeder extends Seeder
         ]);
       
         Question::create([
-            'value' => 'I think the teaching presence factor is important. ',
-            'section_id' => 4
-        ]);
-
-        Question::create([
             'value' => 'I believe the instructor should clearly communicate important course topics in an online course.',
             'section_id' => 4
         ]);
@@ -327,11 +312,6 @@ class QuestionSeeder extends Seeder
         Question::create([
             'value' => 'I think Teaching Preseence factor is important. ',
             'section_id' => 4
-        ]);
-
-        Question::create([
-            'value' => 'I think the social presence factor is important. ',
-            'section_id' => 5
         ]);
 
         Question::create([
