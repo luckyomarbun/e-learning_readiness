@@ -61,9 +61,6 @@
                 <p class="text-justify">This survey evaluates your readiness to engage in e-learning activities effectively and efficiently. Your responses to the survey will be used to identify areas where you may need additional support or resources to enhance your e-learning experience.</p>
                 <p class="text-center welcome-message">Are you ready to take the survey?</p>
                 <div class="text-center survey-button">
-                    <!-- <form action="/dashboard" method="GET">
-                        <button type="submit" class="btn btn-primary btn-lg">Take Survey</button>
-                    </form> -->
                     <form action="{{ route('survey') }}" method="GET">
                         <button type="submit" class="btn btn-primary btn-lg">Take Survey</button>
                     </form>

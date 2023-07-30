@@ -52,10 +52,10 @@
     <div class="col-lg-6">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Jumlah Peserta Survei yang Lolos berdasarkan Tahun Masuk</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Jumlah Peserta Survei dengan status Ready berdasarkan Tahun Masuk</h6>
             </div>
             <div class="card-body">
-                <!-- Tampilkan diagram batang jumlah peserta survei yang lolos berdasarkan tahun masuk -->
+                <!-- Tampilkan diagram batang jumlah peserta survei dengan status Ready berdasarkan tahun masuk -->
                 <canvas id="barChart"></canvas>
             </div>
         </div>

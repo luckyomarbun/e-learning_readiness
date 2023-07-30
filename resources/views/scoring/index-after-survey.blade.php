@@ -155,11 +155,11 @@
             <i class="bi bi-gear"></i>
         @elseif ($section['name'] === 'Study Habits & Skills')
             <i class="bi bi-book"></i>
-        @elseif ($section['name'] === 'Cognitive Preseence')
+        @elseif ($section['name'] === 'Cognitive Presence')
             <i class="bi bi-lightbulb"></i>
-        @elseif ($section['name'] === 'Teaching Preseence')
+        @elseif ($section['name'] === 'Teaching Presence')
             <i class="bi bi-person-check"></i>
-        @elseif ($section['name'] === 'Social Preseence')
+        @elseif ($section['name'] === 'Social Presence')
             <i class="bi bi-people"></i>
         @endif
     </div>
@@ -212,7 +212,7 @@
                                         <li>Evaluate your learning progress independently for improvement.</li>
                                     </ul>
                                 </div>
-                            @elseif ($section['name'] === 'Cognitive Preseence' && $section['score'] < 0.84)
+                            @elseif ($section['name'] === 'Cognitive Presence' && $section['score'] < 0.84)
                                 <div class="text-left">
                                     <ul >
                                         <li>Assign collaborative tasks and projects that encourage critical thinking.</li>
@@ -220,7 +220,7 @@
                                         <li>Provide constructive feedback to students.</li>
                                     </ul>
                                 </div>
-                            @elseif ($section['name'] === 'Teaching Preseence' && $section['score'] < 0.84)
+                            @elseif ($section['name'] === 'Teaching Presence' && $section['score'] < 0.84)
                                 <div class="text-left">
                                     <ul >
                                         <li>Provide clear and structured learning guidance.</li>
@@ -228,7 +228,7 @@
                                         <li>Provide additional support to students in need.</li>
                                     </ul>
                                 </div>
-                            @elseif ($section['name'] === 'Social Preseence' && $section['score'] < 0.84)
+                            @elseif ($section['name'] === 'Social Presesnce' && $section['score'] < 0.84)
                                 <div class="text-left">
                                     <ul >
                                         <li>Facilitate social interaction through discussion forums and group projects.</li>

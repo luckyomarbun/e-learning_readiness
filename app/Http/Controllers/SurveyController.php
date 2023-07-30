@@ -183,19 +183,25 @@ class SurveyController extends Controller
         }
     }
 
-    // public function store(Request $request)
-    // {
-    //     $validatedData = $request->validate([
-    //         'value' => 'required',
-    //         'section_id' => 'required'
-    //     ]);
+    public function indexUser(){
+        return view('scoring.home', [
+            'title' => 'Scoring',
+            'active' => 'Scoring'
+        ]);
+    }
+    public function storeQuestion(Request $request)
+    {
+        $validatedData = $request->validate([
+            'value' => 'required',
+            'section_id' => 'required'
+        ]);
 
-    //     Question::create($validatedData);
+        Question::create($validatedData);
 
-    //     return redirect()
-    //         ->route('survey.index', ['sectionId' => $request->section_id])
-    //         ->with('success', 'Question add successfully');
-    // }
+        return redirect()
+            ->route('survey.index', ['sectionId' => $request->section_id])
+            ->with('success', 'Question add successfully');
+    }
 
     public function store(Request $request)
     {

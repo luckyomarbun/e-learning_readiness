@@ -23,7 +23,7 @@
     <hr class="sidebar-divider">
     @if(auth()->user()->role !== 'user')    
     <li class="nav-item {{ Request::is('survey') ? 'active' : '' }}">
-        <a class="nav-link" href="/survey">
+        <a class="nav-link" href="/survey/index">
             <i class="fas fa-user-friends"></i>
             <span>Survey</span></a>
     </li>
