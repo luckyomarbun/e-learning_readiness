@@ -16,28 +16,6 @@ class SurveyController extends Controller
 
     public function survey(Request $request)
     {
-        // if ($request->isMethod('POST')) {
-        //     dd('Haiii');
-        //     $user = User::where('student_id_number',$request->nim)->where('email',Str::upper($request->email))->get();
-        //     if($user->isEmpty()){
-        //         $sections = Section::get();
-        //         foreach ($sections as $section) {
-        //             $section->questions = Question::where('section_id', $section->id)->get();
-        //         }
-        //         return view('scoring.index-before-survey', [
-        //             'title' => 'Survey',
-        //             'active' => 'Survey',
-        //             'sections' => $sections
-        //         ]);
-        //     } else  {
-        //         if($user->survey_completed == 1){
-        //             return view('scoring.index', [
-        //                 'title' => 'Scoring',
-        //                 'active' => 'Scoring'
-        //             ]);
-        //         }
-        //     }
-        // }
         session()->forget('final_score');
         session()->forget('sections');
 
@@ -50,9 +28,7 @@ class SurveyController extends Controller
     public function summary()
     {
         if (session()->get('final_score') == null || session()->get('sections') == null) {
-
-            return redirect('/survey/');
-            // return redirect('/survey/summary');
+            return redirect('/');
         }
 
 
