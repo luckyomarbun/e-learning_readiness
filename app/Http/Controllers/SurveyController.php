@@ -28,10 +28,8 @@ class SurveyController extends Controller
     public function summary()
     {
         if (session()->get('final_score') == null || session()->get('sections') == null) {
-
             return redirect('/');
         }
-
 
         return view('scoring.index-after-survey', [
             'title' => 'Survey',
