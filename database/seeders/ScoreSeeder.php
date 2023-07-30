@@ -15,10 +15,12 @@ class ScoreSeeder extends Seeder
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
-        DB::table('scores')->truncate();
-        Schema::enableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
+        // DB::table('scores')->truncate();
+        // Schema::enableForeignKeyConstraints();
+    }
 
+    public function initialSeed(){
         $data = [
             [
                 'student_id_number' => 107726957,

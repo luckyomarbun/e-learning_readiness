@@ -17,10 +17,13 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        Schema::disableForeignKeyConstraints();
-        User::truncate();
-        Schema::enableForeignKeyConstraints();
+        // Schema::disableForeignKeyConstraints();
+        // User::truncate();
+        // Schema::enableForeignKeyConstraints();
+        // $this->initialSeed();
+    }
 
+    public function initialSeed(){
         User::create([
             'full_name' => 'Admin',
             'student_id_number' => '00000000',
