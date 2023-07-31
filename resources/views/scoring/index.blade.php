@@ -62,20 +62,20 @@
 
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" id="email" name="email" class="form-control" pattern=".+@telkomuniversity\.ac\.id$" required>
-                                <small class="form-text text-muted">Email must end with @telkomuniversity.ac.id</small>
+                                <input type="email" id="email" name="email" class="form-control" pattern=".+@student\telkomuniversity\.ac\.id$" required>
+                                <small class="form-text text-muted">Email must end with @student.telkomuniversity.ac.id</small>
                             </div>
 
                             <div class="form-group">
-                                <label for="year">Year:</label>
-                                <input type="number" id="year" name="year" class="form-control" min="2001" required>
-                                <small class="form-text text-muted">Year of admission must be after 2000</small>
+                                <label for="year">Entry Year:</label>
+                                <input type="number" id="year" name="year" class="form-control" min="2016" required>
+                                <small class="form-text text-muted">Year of admission must be after 2016</small>
                             </div>
 
                             <div class="form-group">
-                                <label for="nim">NIM:</label>
+                                <label for="nim">Student Number (NIM):</label>
                                 <input type="text" id="nim" name="nim" class="form-control" pattern="[0-9]{10}" required>
-                                <small class="form-text text-muted">NIM must consist of exactly 10 digits</small>
+                                <small class="form-text text-muted">Student Number (NIM) must consist of exactly 10 digits</small>
                             </div>
                             <div class="form-group text-right">
                             <button type="submit" class="btn btn-primary">next</button>
