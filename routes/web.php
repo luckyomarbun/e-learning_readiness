@@ -86,7 +86,7 @@ Route::get('/alternative/delete/{id}', [AlternativeController::class, 'delete'])
 
 Route::match(['get', 'post'], '/survey', [SurveyController::class, 'survey'])->name('survey')->middleware('guest');
 Route::get('/survey/index', [SurveyController::class, 'index']);
-Route::resource('/survey', SurveyController::class);
+// Route::resource('/survey', SurveyController::class);
 // Route::post('/survey/store/question', [SurveyController::class, 'storeQuestion'])->name('survey.storeQuestion');;
 // Route::post('/survey/start', [SurveyController::class, 'start'])->name('survey.start');
 Route::match(['get', 'post'],'/survey/form', [SurveyController::class, 'form'])->name('survey.form');

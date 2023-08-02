@@ -62,7 +62,7 @@
 
                             <div class="form-group">
                                 <label for="email">Email:</label>
-                                <input type="email" id="email" name="email" class="form-control" pattern=".+@student\telkomuniversity\.ac\.id$" required>
+                                <input type="email" id="email" name="email" class="form-control" pattern=".+@student\.telkomuniversity\.ac\.id$" required>
                                 <small class="form-text text-muted">Email must end with @student.telkomuniversity.ac.id</small>
                             </div>
 
