@@ -70,14 +70,18 @@ class SurveyController extends Controller
                 ]);
 
                 $sections = Section::get();
+                $totalQuestion = 0;
                 foreach ($sections as $section) {
-                    $section->questions = Question::where('section_id', $section->id)->get();
+                    $questions = Question::where('section_id', $section->id)->get();
+                    $section->questions = $questions;
+                    $totalQuestion+=$questions->count();
                 }
 
                 return view('scoring.index-before-survey', [
                     'title' => 'Survey',
                     'active' => 'Survey',
-                    'sections' => $sections
+                    'sections' => $sections,
+                    'totalQuestion'=>$totalQuestion
                 ]);
             }
         }

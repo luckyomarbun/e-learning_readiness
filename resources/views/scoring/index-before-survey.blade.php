@@ -130,9 +130,10 @@
             // Function to validate the form before submission
             function validateForm() {
                 // Example: Check if all questions are answered
-                var unansweredQuestions = $('input[type=radio]:not(:checked)').length;
-                console.log('Anastasius');
-                 if (unansweredQuestions > 0) {
+                var answeredQuestion = $('input[type=radio]:checked').length;
+
+                console.log(answeredQuestion)
+                 if (answeredQuestion<{{Js::from($totalQuestion) }}) {
                     // alert('Please answer all question!');
                     var errorMessage = '<strong>Error!</strong> ' + 'Please answer all question!' + '<br>';
                     console.log('MASUK');
