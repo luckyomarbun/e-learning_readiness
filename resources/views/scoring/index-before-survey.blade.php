@@ -47,7 +47,7 @@
                                 <input type="radio"
                                     name="answers[{{ $sections[$i]->id }}][{{ $question->id }}]"
                                     value="{{ $weight }}"
-                                    required
+                                    {{-- required --}}
                                     {{ old("answers.{$sections[$i]->id}.{$question->id}") == $weight ? 'checked' : '' }}>
                                 {{ $optionText }}
                             </label>
@@ -131,21 +131,18 @@
             function validateForm() {
                 // Example: Check if all questions are answered
                 var unansweredQuestions = $('input[type=radio]:not(:checked)').length;
-                //  if (unansweredQuestions > 0) {
+                console.log('Anastasius');
+                 if (unansweredQuestions > 0) {
                     // alert('Please answer all question!');
-                    // for (var key in errors) {
-                    // var errorMessage = '<strong>Error!</strong> ' + 'Please answer all question!' + '<br>';
-                    // }
-                    // console.log('MASUK');
-                    // $('#error-container').html(errorMessage).show();
-                    // setTimeout(function() {
-                    // $('#error-container').hide();
-                    // }, 3000);
-                    // return false; // Prevent form submission
-                // }
-
-                // Add more validation rules for other form fields as needed
-                // ...
+                    var errorMessage = '<strong>Error!</strong> ' + 'Please answer all question!' + '<br>';
+                    console.log('MASUK');
+                    $('#error-container').html(errorMessage).show();
+                    window.scrollTo(0, 0);
+                    setTimeout(function() {
+                    $('#error-container').hide();
+                }, 5000);
+                    return false; // Prevent form submission
+                }
 
                 return true; // Allow form submission if all validations pass
             }
