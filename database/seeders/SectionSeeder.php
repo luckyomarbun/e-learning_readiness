@@ -33,19 +33,19 @@ class SectionSeeder extends Seeder
 
         Section::create([
             'id' => 3,
-            'value' => 'Cognitive Preseence',
+            'value' => 'Cognitive Presence',
             'description' => 'Cognitive Presence refers to the level of critical thinking, reflection, and active participation demonstrated by learners in online discussions and collaborative activities. This factor examines how well learners engage in meaningful interactions, analyze information, and contribute to intellectual discourse. A strong cognitive presence fosters a deeper understanding of the course content and promotes knowledge construction'
         ]);
 
         Section::create([
             'id' => 4,
-            'value' => 'Teaching Preseence',
+            'value' => 'Teaching Presence',
             'description' => 'Teaching Presence assesses the role of instructors or facilitators in creating a supportive and interactive online learning environment. This factor includes the design and organization of online courses, instructional strategies, timely feedback, and guidance provided by instructors to enhance learners engagement and motivation. A strong teaching presence positively influences learners satisfaction and learning outcomes'
         ]);
 
         Section::create([
             'id' => 5,
-            'value' => 'Social Preseence',
+            'value' => 'Social Presence',
             'description' => 'Social Presence relates to the learners sense of connection, belonging, and interaction with others in the online learning community. This factor explores how learners engage in social interactions, collaborate with peers, and build a supportive learning network. A strong social presence contributes to a positive learning experience and reduces feelings of isolation in the virtual learning environment'
         ]);
     }

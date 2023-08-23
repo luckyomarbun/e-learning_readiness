@@ -37,7 +37,11 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Student ID Number</th>
                                 <th scope="col">Submission Time</th>
-                                <th scope="col">Score</th>
+                                <th scope="col">TS</th>
+                                <th scope="col">SHS</th>
+                                <th scope="col">CP</th>
+                                <th scope="col">TP</th>
+                                <th scope="col">SP</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,7 +51,11 @@
                                 <td>{{ $data->full_name; }}</td>
                                 <td>{{ $data->student_id_number; }}</td>
                                 <td>{{ $data->survey_taken_date; }}</td>
-                                <td>{{ $data->final_score; }}</td>
+                                <td>{{ $data->section1; }}</td>
+                                <td>{{ $data->section2; }}</td>
+                                <td>{{ $data->section3; }}</td>
+                                <td>{{ $data->section4; }}</td>
+                                <td>{{ $data->section5; }}</td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -90,11 +90,6 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
-            'value' => 'I use/have used social networking (e.g. Facebook, Instagram, etc.). ',
-            'section_id' => 1
-        ]);
-
-        Question::create([
             'value' => 'I participate in online gaming networks.',
             'section_id' => 1
         ]);
@@ -250,7 +245,7 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
-            'value' => 'I think the Cognitive Preseence factor is important. ',
+            'value' => 'I think the Cognitive Presence factor is important. ',
             'section_id' => 3
         ]);
       
@@ -310,7 +305,7 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
-            'value' => 'I think Teaching Preseence factor is important. ',
+            'value' => 'I think Teaching Presence factor is important. ',
             'section_id' => 4
         ]);
 
@@ -365,7 +360,7 @@ class QuestionSeeder extends Seeder
         ]);
 
         Question::create([
-            'value' => 'I think Social Preseence factor is important. ',
+            'value' => 'I think Social Presence factor is important. ',
             'section_id' => 5
         ]);
         

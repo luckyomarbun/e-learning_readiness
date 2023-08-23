@@ -45,7 +45,7 @@
             </div>
             <div class="card-body">
                 <!-- Tampilkan diagram pie chart hasil survei -->
-                <canvas id="pieChart"></canvas>
+                <!-- <canvas id="pieChart"></canvas> -->
             </div>
         </div>
     </div>
