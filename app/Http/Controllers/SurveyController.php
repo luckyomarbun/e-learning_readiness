@@ -88,10 +88,6 @@ class SurveyController extends Controller
         }
     }
 
-    public function convertScala5($score) {
-    return (($score - 0.2) / (1 - 0.2)) * (5 - 1) + 1;
-}
-
     public function index(Request $request)
     {
 
@@ -179,7 +175,8 @@ class SurveyController extends Controller
             $sections = [];
             foreach ($section as $s) {
                 $score = Score::select('score')->where('student_id_number',  $userAuth->student_id_number)->where('section_id', $s->id)->first();
-                array_push($sections, ['name' => $s->value, 'score' => $score->score ?? 0]);
+                $value =  (($score->score - 0.2) / (1 - 0.2)) * (5 - 1) + 1;
+                array_push($sections, ['name' => $s->value, 'score' => $value ?? 0]);
             }
             Session::put('final_score', $userAuth->final_score);
             Session::put('sections', $sections);

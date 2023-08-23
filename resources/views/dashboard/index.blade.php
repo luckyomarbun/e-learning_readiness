@@ -41,11 +41,33 @@
     <div class="col-lg-6">
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Hasil Survei</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Rata-Rata Nilai E-Learning Readiness Seluruh Mahasiswa</h6>
             </div>
             <div class="card-body">
                 <!-- Tampilkan diagram pie chart hasil survei -->
                 <!-- <canvas id="pieChart"></canvas> -->
+                <table>
+                    <tr>
+                      <th>Technological Skills:</th>
+                      <td style="padding-left: 40px">{{$average[0]->section_score}}</td>
+                    </tr>
+                    <tr>
+                      <th>Study Habits & Skills:</th>
+                      <td style="padding-left: 40px">{{$average[1]->section_score}}</td>
+                    </tr>
+                    <tr>
+                      <th>Cognitive Presence:</th>
+                      <td style="padding-left: 40px">{{$average[2]->section_score}}</td>
+                    </tr>
+                    <tr>
+                      <th>Teaching Presence:</th>
+                      <td style="padding-left: 40px">{{$average[3]->section_score}}</td>
+                    </tr>
+                    <tr>
+                      <th>Social Presence:</th>
+                      <td style="padding-left: 40px">{{$average[4]->section_score}}</td>
+                    </tr>
+                  </table>
             </div>
         </div>
     </div>
@@ -82,10 +104,34 @@
     var barData = {
         labels: {{Js::from($data['years']) }}, // Ubah dengan data tahun masuk yang sesuai
         datasets: [{
-            label: 'Jumlah yang Lolos',
+            label: 'Technological Skills',
             backgroundColor: '#36a2eb',
             borderColor: '#36a2eb',
-            data: {{Js::from($data['total']) }}, // Ubah dengan data jumlah yang lolos berdasarkan tahun masuk yang sesuai
+            data: {{Js::from($data['section1']) }}, // Ubah dengan data jumlah yang lolos berdasarkan tahun masuk yang sesuai
+        },
+        {
+            label: 'Study Habits & Skills',
+            backgroundColor: 'rgba(255, 99, 132, 0.8)', // Bold red color with transparency
+            borderColor: 'rgba(255, 99, 132, 1)',
+            data: {{Js::from($data['section2']) }}, // Ubah dengan data jumlah yang lolos berdasarkan tahun masuk yang sesuai
+        },
+        {
+            label: 'Cognitive Presence',
+            backgroundColor: 'rgba(0, 204, 102, 0.8)', // Bold green color with transparency
+            borderColor: 'rgba(0, 204, 102, 1)',
+            data: {{Js::from($data['section3']) }}, // Ubah dengan data jumlah yang lolos berdasarkan tahun masuk yang sesuai
+        },
+        {
+            label: 'Teaching Presence',
+            backgroundColor: 'rgba(255, 156, 0, 0.8)', // Bold orange color with transparency
+            borderColor: 'rgba(255, 156, 0, 1)',
+            data: {{Js::from($data['section4']) }}, // Ubah dengan data jumlah yang lolos berdasarkan tahun masuk yang sesuai
+        },
+        {
+            label: 'Social Presence',
+            backgroundColor: 'rgba(128, 0, 128, 0.8)', // Bold purple color with transparency
+            borderColor: 'rgba(128, 0, 128, 1)',
+            data: {{Js::from($data['section5']) }}, // Ubah dengan data jumlah yang lolos berdasarkan tahun masuk yang sesuai
         }]
     };
 
