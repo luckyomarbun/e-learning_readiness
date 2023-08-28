@@ -196,7 +196,7 @@
                             </div>
                         </div>
                         <div class="suggestion text-center py-3"> <!-- Add class "text-center" and "py-3" for vertical padding -->
-                            @if ($section['name'] === 'Technological Skills' && $section['score'] < 0.84)
+                            @if ($section['name'] === 'Technological Skills' && $section['score'] < 4.2)
                                 <div class="text-left">
                                     <ul>
                                         <li>Take technology training before starting e-learning.</li>
@@ -204,7 +204,7 @@
                                         <li>Get technical support through Q&A sessions.</li>
                                     </ul>
                                 </div>
-                            @elseif ($section['name'] === 'Study Habits & Skills' && $section['score'] < 0.84)
+                            @elseif ($section['name'] === 'Study Habits & Skills' && $section['score'] < 4.2)
                                 <div class="text-left">
                                     <ul >
                                         <li>Manage your time by creating an efficient study schedule.</li>
@@ -212,7 +212,7 @@
                                         <li>Evaluate your learning progress independently for improvement.</li>
                                     </ul>
                                 </div>
-                            @elseif ($section['name'] === 'Cognitive Presence' && $section['score'] < 0.84)
+                            @elseif ($section['name'] === 'Cognitive Presence' && $section['score'] < 4.2)
                                 <div class="text-left">
                                     <ul >
                                         <li>Assign collaborative tasks and projects that encourage critical thinking.</li>
@@ -220,7 +220,7 @@
                                         <li>Provide constructive feedback to students.</li>
                                     </ul>
                                 </div>
-                            @elseif ($section['name'] === 'Teaching Presence' && $section['score'] < 0.84)
+                            @elseif ($section['name'] === 'Teaching Presence' && $section['score'] < 4.2)
                                 <div class="text-left">
                                     <ul >
                                         <li>Provide clear and structured learning guidance.</li>
@@ -228,7 +228,7 @@
                                         <li>Provide additional support to students in need.</li>
                                     </ul>
                                 </div>
-                            @elseif ($section['name'] === 'Social Presesnce' && $section['score'] < 0.84)
+                            @elseif ($section['name'] === 'Social Presesnce' && $section['score'] < 4.2)
                                 <div class="text-left">
                                     <ul >
                                         <li>Facilitate social interaction through discussion forums and group projects.</li>
