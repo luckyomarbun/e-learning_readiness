@@ -55,6 +55,7 @@ class SurveyController extends Controller
                     $value =  (($score->score - 0.2) / (1 - 0.2)) * (5 - 1) + 1;
                     array_push($sections, ['name' => $s->value, 'score' => $value ?? 0]);
                 }
+                dd($sections);
                 Session::put('final_score', $user->final_score);
                 Session::put('sections', $sections);
                 return redirect('/survey/summary');
