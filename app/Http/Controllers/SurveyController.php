@@ -37,7 +37,7 @@ class SurveyController extends Controller
     }
     public function form(Request $request)
     {
-
+        
         if (Session::get('userData') != null && $request->form_user == null) {
             $user = User::where('email', Session::get('userData')['email'])->where('student_id_number', Session::get('userData')['student_id_number'])->first();
             if ($user != null && $user->survey_completed == 1) {
@@ -117,28 +117,30 @@ class SurveyController extends Controller
 
     public function submit(Request $request)
     {
-        // $validator = FacadesValidator::make($request->all(), []);
+        
+        $validator = FacadesValidator::make($request->all(), []);
 
-        // $validator->after(function ($validator) use ($request) {
-        //     $answers = $request->input('answers');
-        //     $totalAnsweredQuestions = 0;
+        $validator->after(function ($validator) use ($request) {
+            $answers = $request->input('answers');
+            $totalAnsweredQuestions = 0;
 
-        //     if ($answers == null) {
-        //         $validator->errors()->add('answers', 'Please answer all question!');
-        //     } else {
-        //         foreach ($answers as $sectionId => $sectionAnswers) {
-        //             $totalAnsweredQuestions += count($sectionAnswers);
-        //         }
-        //         $totalQuestion = Question::count();
-        //         if ($totalAnsweredQuestions !== $totalQuestion) {
-        //             $validator->errors()->add('answers', 'Please answer all question!');
-        //         }
-        //     }
-        // });
+            if ($answers == null) {
+                $validator->errors()->add('answers', 'Please answer all question!');
+            } else {
+                foreach ($answers as $sectionId => $sectionAnswers) {
+                    $totalAnsweredQuestions += count($sectionAnswers);
+                }
+                $totalQuestion = Question::count();
+                if ($totalAnsweredQuestions !== $totalQuestion) {
+                    $validator->errors()->add('answers', 'Please answer all question!');
+                }
+            }
+        });
 
-        // if ($validator->fails()) {
-        //     return redirect()->back()->withErrors($validator)->withInput();
-        // }
+        if ($validator->fails()) {
+           
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         //add scores
         $answers = $request->input('answers');

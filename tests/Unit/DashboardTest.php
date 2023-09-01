@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Support\Facades\Auth;
 use PHPUnit\Framework\TestCase;
 
 class DashboardTest extends TestCase
@@ -10,7 +11,6 @@ class DashboardTest extends TestCase
     {
         // Create a mock user
         $user = $this->getMockBuilder(User::class)->getMock();
-        $user->method('getAttribute')->willReturn(1);
 
         // Mock Auth facade
         Auth::shouldReceive('user')->andReturn($user);
