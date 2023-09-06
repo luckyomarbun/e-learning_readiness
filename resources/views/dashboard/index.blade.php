@@ -49,23 +49,23 @@
                 <table>
                     <tr>
                       <th>Technological Skills:</th>
-                      <td style="padding-left: 40px">{{$average[0]->section_score}}</td>
+                      <td style="padding-left: 40px">{{$average[0]->section_score ?? '0' }}</td>
                     </tr>
                     <tr>
                       <th>Study Habits & Skills:</th>
-                      <td style="padding-left: 40px">{{$average[1]->section_score}}</td>
+                      <td style="padding-left: 40px">{{$average[1]->section_score ?? '0'}}</td>
                     </tr>
                     <tr>
                       <th>Cognitive Presence:</th>
-                      <td style="padding-left: 40px">{{$average[2]->section_score}}</td>
+                      <td style="padding-left: 40px">{{$average[2]->section_score ?? '0'}}</td>
                     </tr>
                     <tr>
                       <th>Teaching Presence:</th>
-                      <td style="padding-left: 40px">{{$average[3]->section_score}}</td>
+                      <td style="padding-left: 40px">{{$average[3]->section_score ?? '0'}}</td>
                     </tr>
                     <tr>
                       <th>Social Presence:</th>
-                      <td style="padding-left: 40px">{{$average[4]->section_score}}</td>
+                      <td style="padding-left: 40px">{{$average[4]->section_score ?? '0'}}</td>
                     </tr>
                   </table>
             </div>

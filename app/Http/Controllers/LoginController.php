@@ -18,17 +18,15 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {   
-        
         $credentials = $request->validate([
-            'email' => ['required', 'email:dns'],
+            'email' => ['required'],
             'password' => ['required']
         ]);
-
+        
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             return redirect()->intended('/dashboard')->with('active', 'dashboard');
         }
-
         return back()->with('loginError', 'Invalid credentials!');
     }
 

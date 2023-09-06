@@ -18,10 +18,11 @@ class UserController extends Controller
         MAX(CASE WHEN scores.section_id = 5 THEN ((scores.score - 0.2) / (1 - 0.2)) * (5 - 1) + 1 END) AS section5')
         ->join('scores','users.student_id_number','=','scores.student_id_number')
         ->where('role','user')
-        // ->groupBy('users.student_id_number')
+        ->groupBy('users.id','users.full_name','users.student_id_number','users.final_score','users.survey_taken_date')
         ->latest('users.created_at')
         ->paginate(100)
         ->withQueryString();
+
         return view('respondents.index', [
             'title' => 'Respondents',
             'active' => 'respondents',

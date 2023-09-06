@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
-class userSurveyTest extends TestCase
+class UserSurveyTest extends TestCase
 {
 
     use WithoutMiddleware;
@@ -264,5 +264,7 @@ class userSurveyTest extends TestCase
         $this->withoutExceptionHandling();
         $response = $this->get('/survey/summary');
         $response->assertSuccessful();
+        $response->assertViewIs('scoring.index-after-survey');
+        $response->assertViewHas(['title', 'active']);
     }
 }

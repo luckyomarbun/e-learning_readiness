@@ -17,6 +17,7 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
 
+       
         $user = Auth::user();
         if ($user->role == 'user') {
             if ($request->isMethod('post')) {
@@ -81,24 +82,11 @@ class DashboardController extends Controller
 
             
             $data = ['years' => $years, 'section1' => $section1,'section2' => $section2,'section3' => $section3,'section4' => $section4,'section5' => $section5];
-            // $ready = User::where('role','user') ->whereRaw('final_score >= 4.2')
-            // ->count();
-
-            // $almostReady = User::where('role','user')->whereRaw('final_score >= 3.4 AND final_score < 4.2 ')
-            // ->count();
-
-            // $needSomeWork = User::where('role','user')->whereRaw('final_score >= 2.6 AND final_score < 3.4 ')
-            // ->count();
-
-            // $notReady = User::where('role','user')->whereRaw('final_score < 2.6')
-            // ->count();
-
             $pieData = [];
 
             $average = Score::selectRaw('section_id,FORMAT(sum(((score - 0.2) / (1 - 0.2)) * (5 - 1) + 1)/count(score),2) as section_score')
                 ->groupBy('section_id')->orderBy('section_id')->get();
-            // dd($average);
-
+            
             return view('dashboard.index', [
                 'title' => 'Dashboard',
                 'active' => 'dashboard',
